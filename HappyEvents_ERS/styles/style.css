@@ -1,0 +1,106 @@
+/*Color Palette*/
+:root {
+  --tertiarycolor: #fff;
+  --secondarycolor: #1c9941;
+  --primarycolor: #e6f5e5;
+}
+
+.gray-bg {
+  background-color: var(--primarycolor) !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
+
+body {
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+  height: 100%;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Unica One", cursive;
+}
+
+.navbar-brand {
+  /*font-family: "Source Serif Pro", serif;*/
+  font-family: "Unica One", cursive;
+  color: var(--primarycolor) !important;
+}
+
+.img-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.img-grid-column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.img-grid-column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .img-grid-column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .img-grid-column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+.footer {
+  background-color: var(--secondarycolor);
+  color: var(--primarycolor);
+  min-height: 200px;
+}
+
+#footer-navigation a {
+  color: var(--primarycolor);
+  text-decoration: none;
+}
+
+.basic-form-style {
+  border-radius: 25px;
+  background-color: var(--secondarycolor);
+  color: var(--tertiarycolor);
+}
+
+/*Equipment Catalogue styles*/
+.product-card-grid-container {
+  /*width: 90vw;*/
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+}
+
+.product-card {
+  border-radius: 25px !important;
+  transition: 0.5s;
+  background: var(--secondarycolor) !important;
+  color: var(--primarycolor);
+  /*display: none;  Hidden by default */
+  min-height: 100px;
+  overflow: hidden !important;
+}

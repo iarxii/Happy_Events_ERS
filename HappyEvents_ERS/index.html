@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Happy Events Equipment Rentals</title>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Sign In Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="clientSignInModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="clientSignInModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header gray-bg">
+            <h5 class="modal-title" id="clientSignInModalLabel">Client Sign In</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="color: #344646">
+            <form action="client-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form">
+              <div class="mb-3">
+                <label for="signInInputUsername" class="form-label">Username</label>
+                <input type="text" class="form-control rounded-pill text-center" id="signInInputUsername" name="signInInputUsername" />
+              </div>
+              <div class="mb-3">
+                <label for="signInInputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control rounded-pill text-center" id="signInInputPassword" name="signInInputPassword" />
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-dark btn-block rounded-pill">Sign In</button>
+              </div>
+              <!--<div class="text-center">
+                <a href="#client-reg-label" data-bs-dismiss="modal">Don't have an account? Register one.</a>
+              </div>-->
+            </form>
+          </div>
+          <div class="modal-footer text-center">
+            <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
+            <button type="button" class="btn btn-outline-dark rounded-pill">Don't have an account? Register one.</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez" style="background: #e6f5e5 !important; color: #1c9941 !important">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <!--style="color: #344646 !important"-->
+          <img src="media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
+        </a>
+        <button class="navbar-toggler shadow rounded-pill p-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="app/EquipmentCatalogue.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- main content -->
+    <!-- Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <!--<div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      </div>-->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="media/general/carousal/slide1.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="media/general/carousal/slide2.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="media/general/carousal/slide3.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="media/general/carousal/slide4.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="media/general/carousal/slide5.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="media/general/carousal/slide6.png" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>-->
+    </div>
+
+    <!-- Main -->
+    <hr class="bg-white" />
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 pb-4">
+          <h1>Looking to Buy or Rent Equipment for an Event?</h1>
+
+          <p>As human beings, we gather and celebrate or commemorate special occasions such as weddings, graduations, funerals, and religious occasions. When such an occasion comes upon us, we want to ensure that the environment in which we gather has the “appropriate” appearance and ambiance. One of the main ways of achieving this is decoration and having specialized equipment.</p>
+          <p>We at Happy Events Equipment Rentals offer a wide range of high quality equipment for all events and occasions, all at the lowest price points you can find in the market. We ensure that all rental equipment is in optimal condition and that all products for purchase are brand new and impecably packaged for the best experience.</p>
+          <p>Join the Happy Family Today to get access to equipment that will dignify all your occasions, you won't regret it.</p>
+
+          <div class="my-4 d-grid">
+            <button class="btn btn-block btn-outline-success rounded-pill shadow-lg"><span class="display-4">Browse the Store</span></button>
+          </div>
+
+          <hr class="bg-white" />
+
+          <h2 class="text-center" id="client-reg-label">Register today, It's Free!</h2>
+          <p>Register today and get your first 30%-Off rental discount and go on to browse our extensive catalogue.</p>
+          <hr class="bg-white" />
+          <form action="client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow">
+            <div id="emailHelp" class="form-text text-center">Please take note that we will never share your email address and contact number with anyone else.</div>
+            <div class="mb-3">
+              <label for="clientRegInputFName" class="form-label">First Name</label>
+              <input type="text" class="form-control rounded-pill" id="clientRegInputFName" name="clientRegInputFName" required />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputLName" class="form-label">Last Name</label>
+              <input type="text" class="form-control rounded-pill" id="clientRegInputLName" name="clientRegInputLName" required />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputContact" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control rounded-pill" id="clientRegInputContact" name="clientRegInputContact" required />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control rounded-pill" id="clientRegInputEmail" name="clientRegInputEmail" required />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputDOB" class="form-label">Date of birth</label>
+              <input type="date" class="form-control rounded-pill" id="clientRegInputDOB" name="clientRegInputDOB" required />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputIDNum" class="form-label">SA ID Number</label>
+              <input type="number" class="form-control rounded-pill" id="clientRegInputIDNum" name="clientRegInputIDNum" />
+            </div>
+            <div class="mb-3">
+              <label for="clientRegInputResAddress" class="form-label">Residential address</label>
+              <textarea type="email" class="form-control rounded" id="clientRegInputResAddress" name="clientRegInputResAddress" rows="5"></textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="promoCheck" name="promoCheck" />
+              <label class="form-check-label text-start" for="promoCheck" aria-checked="true" checked="checked">Subscribe for promotional content?</label>
+            </div>
+            <button type="submit" class="btn btn-outline-light btn-block rounded-pill"><span class="display-6 m-4">Register</span></button>
+          </form>
+        </div>
+        <div class="col-md-4 text-center">
+          <!-- Image Grid Row -->
+          <h1 class="text-center">Our Event Highlights:</h1>
+          <div class="img-grid-row">
+            <div class="img-grid-column">
+              <img class="shadow" src="media/general/pexels-anastasia-shuraeva-4989501.jpg" />
+              <img class="shadow" src="media/general/pexels-angela-roma-7364210.jpg" />
+              <img class="shadow" src="media/general/pexels-anna-guerrero-8392460.jpg" />
+              <img class="shadow" src="media/general/pexels-asad-photo-maldives-169190.jpg" />
+              <img class="shadow" src="media/general/pexels-craig-adderley-2306281.jpg" />
+              <img class="shadow" src="media/general/pexels-julia-larson-6113269.jpg" />
+              <img class="shadow" src="media/general/pexels-juliano-ferreira-9467257.jpg" />
+            </div>
+            <div class="img-grid-column">
+              <img class="shadow" src="media/general/pexels-kyle-loftus-2510428.jpg" />
+              <img class="shadow" src="media/general/pexels-lina-kivaka-1813496.jpg" />
+              <img class="shadow" src="media/general/pexels-lukas-574011.jpg" />
+              <img class="shadow" src="media/general/pexels-maël-balland-3195786.jpg" />
+              <img class="shadow" src="media/general/pexels-pavel-danilyuk-7317666.jpg" />
+              <img class="shadow" src="media/general/pexels-rachel-claire-4577410.jpg" />
+            </div>
+            <div class="img-grid-column">
+              <img class="shadow" src="media/general/pexels-rene-asmussen-4181670.jpg" />
+              <img class="shadow" src="media/general/pexels-wendy-wei-2350325.jpg" />
+              <img class="shadow" src="media/general/pexels-татьяна-чернышова🍒-3761708.jpg" />
+              <img class="shadow" src="media/general/pexels-anastasia-shuraeva-4993956.jpg" />
+              <img class="shadow" src="media/general/pexels-angela-roma-7364211.jpg" />
+              <img class="shadow" src="media/general/pexels-arthouse-studio-4558316.jpg" />
+              <img class="shadow" src="media/general/pexels-cottonbro-6289795.jpg" />
+            </div>
+            <div class="img-grid-column">
+              <img class="shadow" src="media/general/pexels-everson-mayer-1481312.jpg" />
+              <img class="shadow" src="media/general/pexels-julia-volk-8921938.jpg" />
+              <img class="shadow" src="media/general/pexels-keegan-checks-2802811.jpg" />
+              <img class="shadow" src="media/general/pexels-kyle-loftus-3379933.jpg" />
+              <img class="shadow" src="media/general/pexels-lukas-306088.jpg" />
+              <img class="shadow" src="media/general/pexels-markus-spiske-3806767.jpg" />
+            </div>
+          </div>
+          <!-- ./ Image Grid Row -->
+
+          <img src="media/assets/Happy Events ERS New Brand 2.png" alt="" class="img-fluid my-4 shadow" style="border-radius: 25px !important" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="bg-white" />
+    <!-- footer -->
+    <div class="footer mb-0 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center pb-4">
+            <img src="media/assets/Happy Events without Logo with BG_tight.png" alt="logo" class="img-fluid shadow" style="border-radius: 25px" />
+
+            <p class="mt-4"><strong>Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
+          </div>
+          <div class="col text-start pb-4">
+            <h2 class="text-start">Navigation</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="#">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="about.html">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
+              <li class="list-group-item bg-transparent"><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <h2 class="text-start">Important Links</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Privacy Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Return Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+          <div class="col pb-4">
+            <h2>Sign up for our Newsletter</h2>
+            <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discounts (if you are a registered client).</p>
+            <form class="row g-3">
+              <div class="col-auto">
+                <label for="staticEmail2" class="visually-hidden">Email</label>
+                <input type="email" class="form-control -plaintext text-center rounded-pill shadow" id="staticEmail2" placeholder="email@example.com" />
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-outline-light rounded-pill mb-3">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="w-100 text-center">
+          <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
