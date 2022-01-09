@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Administration (Confidential) | Happy Events Equipment Rentals</title>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="../../styles/style.css" />
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5z sticky-top" style="background: #e6f5e5 !important; color: #1c9941 !important; border-radius: 0 0 25px 25px !important">
+      <div class="container">
+        <div class="navbar-brand fw-bold d-block fs-3" style="color: #1c9941 !important">
+          <!--href="#"-->
+          <!---->
+          <img src="../../media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
+
+          Happy Events Rentals&trade;<span class="sniglet-font">.ERS</span>&copy;
+          <span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner"></i></span>
+        </div>
+
+        <button class="navbar-toggler shadow rounded-pill p-4 my-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #1c9941 !important">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active text-center" aria-current="page" href="#">Admin Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="../../about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="../../app/EquipmentCatalogue.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="../../contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="#user-mgm-lbl">User Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- ./ Navigation Bar -->
+
+    <!-- Main Content  style="margin-top: 250px"-->
+    <div class="container p-4">
+      <h1 class="text-center" style="font-size: 70px">System Admin <i class="fas fa-user-shield"></i></h1>
+
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+
+      <h1 class="mt-4">Product Management <i class="fas fa-barcode"></i></h1>
+      <button class="btn btn-success btn-lg p-3 mb-2 rounded-pill sniglet-font" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Add New Product +</button>
+
+      <!-- Add New Product Offcanvas -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" data-bs-scroll="true" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="background-color: #1c9941 !important; color: #fff !important; width: 600px !important">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title fs-1 sniglet-font-thick" id="offcanvasBottomLabel">Add New Product +</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="shadow p-4 bg-white fs-5" style="border-radius: 25px">
+            <form action="../../client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow" id="homepage-client-registration-form">
+              <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the Registration of <strong>Clients/Customers</strong> to create new user accounts to grant them access to the system.</div>
+              <div class="mb-3">
+                <label for="clientRegInputTitlee" class="form-label">Title</label>
+                <select class="form-select" aria-label="Registration Form Title Selection" id="clientRegInputTitlee" name="clientRegInputTitlee" aria-placeholder="Please select your Title" placeholder="Please select your Title" required>
+                  <option selected>Please select your Title</option>
+                  <option value="mr">Mr.</option>
+                  <option value="mrs">Mrs.</option>
+                  <option value="ms">Ms.</option>
+                  <option value="dr">Dr.</option>
+                  <option value="sr">Sr.</option>
+                  <option value="prof">Prof.</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputFName" class="form-label">First Name</label>
+                <input type="text" class="form-control rounded-pill" id="clientRegInputFName" name="clientRegInputFName" required />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- ./ Add New Product Offcanvas -->
+
+      <h5 class="mt-4">Products List: <i class="fas fa-arrow-down"></i> (<a href="#">Next Table</a>)</h5>
+      <table class="table table-success text-success mb-4" id="">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody id="">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+
+      <h1 class="mt-4" id="user-mgm-lbl">User Management <i class="fas fa-user-edit"></i></h1>
+      <div class="row my-2">
+        <div class="col-sm-3">
+          <button class="btn btn-success btn-lg p-3 rounded-pill sniglet-font" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Show/Hide Registration Forms</button>
+        </div>
+        <div class="col-sm collapse" id="collapseExample">
+          <!-- Client Registration Form -->
+          <div id="admin-new-user-reg-form" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4">
+            <h1 class="mt-4 text-center">New Client Registration Form</h1>
+
+            <form action="../../client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow" id="homepage-client-registration-form">
+              <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the Registration of <strong>Clients/Customers</strong> to create new user accounts to grant them access to the system.</div>
+              <div class="mb-3">
+                <label for="clientRegInputTitlee" class="form-label">Title</label>
+                <select class="form-select" aria-label="Registration Form Title Selection" id="clientRegInputTitlee" name="clientRegInputTitlee" aria-placeholder="Please select your Title" placeholder="Please select your Title" required>
+                  <option selected>Please select your Title</option>
+                  <option value="mr">Mr.</option>
+                  <option value="mrs">Mrs.</option>
+                  <option value="ms">Ms.</option>
+                  <option value="dr">Dr.</option>
+                  <option value="sr">Sr.</option>
+                  <option value="prof">Prof.</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputFName" class="form-label">First Name</label>
+                <input type="text" class="form-control rounded-pill" id="clientRegInputFName" name="clientRegInputFName" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputLName" class="form-label">Last Name</label>
+                <input type="text" class="form-control rounded-pill" id="clientRegInputLName" name="clientRegInputLName" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputContact" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control rounded-pill" id="clientRegInputContact" name="clientRegInputContact" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control rounded-pill" id="clientRegInputEmail" name="clientRegInputEmail" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputTitlee" class="form-label">Gender</label>
+                <select class="form-select" aria-label="Registration Form Gender Selection" aria-placeholder="Please select your Gender" placeholder="Please select your Gender">
+                  <option selected>Please select your Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="mf-trans-male">Transgender (M -> F)</option>
+                  <option value="fm-trans-female">Transgender (F -> M)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputDOB" class="form-label">Date of birth</label>
+                <input type="date" class="form-control rounded-pill" id="clientRegInputDOB" name="clientRegInputDOB" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputIDNum" class="form-label">SA ID Number</label>
+                <input type="number" class="form-control rounded-pill" id="clientRegInputIDNum" name="clientRegInputIDNum" />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputResAddress" class="form-label">Residential address</label>
+                <textarea type="email" class="form-control rounded" id="clientRegInputResAddress" name="clientRegInputResAddress" rows="5"></textarea>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="promoCheck" name="promoCheck" />
+                <label class="form-check-label text-start" for="promoCheck" aria-checked="true" checked="checked">Subscribe for promotional content?</label>
+              </div>
+              <button type="submit" class="btn btn-outline-light btn-block rounded-pill sniglet-font">
+                <span class="fs-1 m-4">Register <i class="fas fa-paper-plane"></i></span>
+              </button>
+            </form>
+          </div>
+          <!-- ./Client Registration Form -->
+
+          <!-- Administrator Registration Form -->
+          <div id="admin-new-user-reg-form" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4">
+            <h1 class="mt-4 text-center">New Administrator Registration Form</h1>
+
+            <form action="../admin-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow" id="homepage-client-registration-form">
+              <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the Registration of <strong>System Administrators</strong> to create new user accounts to grant them access to the system.</div>
+              <div class="mb-3">
+                <label for="clientRegInputTitlee" class="form-label">Title</label>
+                <select class="form-select" aria-label="Registration Form Title Selection" id="clientRegInputTitlee" name="clientRegInputTitlee" aria-placeholder="Please select your Title" placeholder="Please select your Title" required>
+                  <option selected>Please select your Title</option>
+                  <option value="mr">Mr.</option>
+                  <option value="mrs">Mrs.</option>
+                  <option value="ms">Ms.</option>
+                  <option value="dr">Dr.</option>
+                  <option value="sr">Sr.</option>
+                  <option value="prof">Prof.</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputFName" class="form-label">First Name</label>
+                <input type="text" class="form-control rounded-pill" id="clientRegInputFName" name="clientRegInputFName" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputLName" class="form-label">Last Name</label>
+                <input type="text" class="form-control rounded-pill" id="clientRegInputLName" name="clientRegInputLName" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputContact" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control rounded-pill" id="clientRegInputContact" name="clientRegInputContact" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control rounded-pill" id="clientRegInputEmail" name="clientRegInputEmail" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputTitlee" class="form-label">Gender</label>
+                <select class="form-select" aria-label="Registration Form Gender Selection" aria-placeholder="Please select your Gender" placeholder="Please select your Gender">
+                  <option selected>Please select your Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="mf-trans-male">Transgender (M -> F)</option>
+                  <option value="fm-trans-female">Transgender (F -> M)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputDOB" class="form-label">Date of birth</label>
+                <input type="date" class="form-control rounded-pill" id="clientRegInputDOB" name="clientRegInputDOB" required />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputIDNum" class="form-label">SA ID Number</label>
+                <input type="number" class="form-control rounded-pill" id="clientRegInputIDNum" name="clientRegInputIDNum" />
+              </div>
+              <div class="mb-3">
+                <label for="clientRegInputResAddress" class="form-label">Residential address</label>
+                <textarea type="email" class="form-control rounded" id="clientRegInputResAddress" name="clientRegInputResAddress" rows="5"></textarea>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="promoCheck" name="promoCheck" />
+                <label class="form-check-label text-start" for="promoCheck" aria-checked="true" checked="checked">Subscribe for promotional content?</label>
+              </div>
+              <button type="submit" class="btn btn-outline-light btn-block rounded-pill sniglet-font">
+                <span class="fs-1 m-4">Register <i class="fas fa-paper-plane"></i></span>
+              </button>
+            </form>
+          </div>
+          <!-- ./ Administrator Registration Form -->
+        </div>
+      </div>
+
+      <h5 class="mt-4">Client User Accounts List: <i class="fas fa-arrow-down"></i> (<a href="#">Next Table</a>) <i class="fas fa-arrow-up"></i> (<a href="#">Prev Table</a>)</h5>
+      <table class="table table-success text-success mb-4" id="">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody id="">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5 class="mt-4">System Administrators User Accounts List: <i class="fas fa-arrow-up"></i> (<a href="#">Prev Table</a>)</h5>
+      <table class="table table-success text-success mb-4" id="">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody id="">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+      <hr class="text-success fs-1" />
+    </div>
+    <!-- ./ Main Content -->
+
+    <!-- footer -->
+    <div class="footer mb-0 pt-4 fixed-bottomz">
+      <div class="container">
+        <div class="row">
+          <div class="col-md text-center pb-4">
+            <img src="../../media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow btn-success" style="border-radius: 25px" />
+
+            <p class="mt-4"><strong class="unica-one-font">Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
+          </div>
+          <div class="col-md text-start pb-4">
+            <h2 class="text-start sniglet-font-thick">Navigation</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="../../index.html">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../about.html">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../app/EquipmentCatalogue.html">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../contact.html">Contact</a></li>
+            </ul>
+
+            <h2 class="text-start sniglet-font-thick">Important Links</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Privacy Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Return Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+          <div class="col-md pb-4">
+            <h2 class="sniglet-font-thick">Sign up for our Newsletter</h2>
+            <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discounts (if you are a registered client).</p>
+            <form class="row g-3">
+              <div class="col-auto">
+                <label for="staticEmail2" class="visually-hidden">Email</label>
+                <input type="email" class="form-control -plaintext text-center rounded-pill shadow" id="staticEmail2" placeholder="email@example.com" />
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-outline-light rounded-pill mb-3">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <hr class="text-white" />
+
+        <div class="w-100 text-center">
+          <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

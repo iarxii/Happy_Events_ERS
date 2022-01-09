@@ -111,48 +111,48 @@
 
       <hr class="bg-white" />
     <!-- footer -->
-    <div class="footer mb-0 pt-4 fixed-bottom">
+    <div class="footer mb-0 pt-4">
       <div class="container">
         <div class="row">
-          <div class="col text-center">
-            <img src="media/assets/happy events gray logo symbol.png" alt="logo" class="img-fluid" style="border-radius: 10px; border: solid #344646 5px" />
+          <div class="col-md text-center pb-4">
+            <img src="media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow" style="border-radius: 25px" />
 
-            <p><strong>Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
+            <p class="mt-4"><strong class="unica-one-font">Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
           </div>
-          <div class="col text-start">
-            <h2 class="text-start">Navigation</h2>
-            <ul class="list-group list-group-flush" id="footer-navigation">
-              <li class="list-group-item"><a href="index.php">Home</a></li>
-              <li class="list-group-item"><a href="about.html">About</a></li>
-              <li class="list-group-item"><a href="#">Shop</a></li>
-              <!--<li class="list-group-item"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>-->
-              <li class="list-group-item"><a href="contact.html">Contact</a></li>
+          <div class="col-md text-start pb-4">
+            <h2 class="text-start sniglet-font-thick">Navigation</h2>
+            <ul class="list-group list-group-flush pb-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="#">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="about.html">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="app/EquipmentCatalogue.html">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
+              <li class="list-group-item bg-transparent"><a href="contact.html">Contact</a></li>
             </ul>
 
-            <h2 class="text-start">Important Links</h2>
-            <ul class="list-group list-group-flush" id="footer-navigation">
-              <li class="list-group-item"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
-              <li class="list-group-item"><a href="#">Privacy Policy</a></li>
-              <li class="list-group-item"><a href="#">Return Policy</a></li>
-              <li class="list-group-item"><a href="#">Terms of Use</a></li>
+            <h2 class="text-start sniglet-font-thick">Important Links</h2>
+            <ul class="list-group list-group-flush pb-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Privacy Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Return Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Terms of Use</a></li>
             </ul>
           </div>
-          <div class="col">
-            <h2>Sign up for our Newsletter</h2>
-            <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discount Coupons (if you are a registered client).</p>
+          <div class="col-md pb-4">
+            <h2 class="sniglet-font-thick">Sign up for our Newsletter</h2>
+            <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discounts (if you are a registered client).</p>
             <form class="row g-3">
               <div class="col-auto">
                 <label for="staticEmail2" class="visually-hidden">Email</label>
-                <input type="email" class="form-control-plaintext text-center" id="staticEmail2" placeholder="email@example.com" />
+                <input type="email" class="form-control -plaintext text-center rounded-pill shadow" id="staticEmail2" placeholder="email@example.com" />
               </div>
               <div class="col-auto">
-                <button type="submit" class="btn btn-dark rounded-pill mb-3">Subscribe</button>
+                <button type="submit" class="btn btn-outline-light rounded-pill mb-3">Subscribe</button>
               </div>
             </form>
           </div>
         </div>
 
-        <hr />
+        <hr class="text-white" />
 
         <div class="w-100 text-center">
           <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>

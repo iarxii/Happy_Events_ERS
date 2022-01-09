@@ -3,6 +3,7 @@
   --tertiarycolor: #fff;
   --secondarycolor: #1c9941;
   --primarycolor: #e6f5e5;
+  --secondary-darker: #105525;
 }
 
 .gray-bg {
@@ -10,6 +11,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&family=Unica+One&display=swap");
 
 body {
   background-color: var(--primarycolor);
@@ -23,7 +25,38 @@ h2,
 h3,
 h4,
 h5 {
+  /*font-family: "Unica One", cursive;*/
+  font-family: "Sniglet", cursive;
+}
+
+.sniglet-font {
+  font-family: "Sniglet", cursive;
+}
+
+.sniglet-font-thick {
+  font-family: "Sniglet", cursive;
+  font-weight: 600;
+}
+
+.unica-one-font {
   font-family: "Unica One", cursive;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--secondarycolor) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--secondary-darker) !important;
+  border-bottom: var(--secondarycolor) solid 4px;
+  border-radius: 25px;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: var(--secondary-darker) !important;
+  border-top: var(--secondarycolor) solid 4px;
+  border-radius: 25px;
 }
 
 .navbar-brand {
@@ -103,4 +136,130 @@ h5 {
   /*display: none;  Hidden by default */
   min-height: 100px;
   overflow: hidden !important;
+}
+
+.mini-profile-card {
+  min-height: 100px;
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+  overflow: hidden;
+}
+
+.mini-profile-card img {
+  border-radius: 50rem;
+  border: #1c9941 solid 4px;
+}
+
+.sidecart-item-cart {
+  border-radius: 0 25px 25px 25px;
+  background-color: var(--secondarycolor);
+  color: var(--primarycolor);
+  overflow: hidden;
+}
+
+.sidecart-item-cart img {
+  border-radius: 0 25px 25px 25px !important;
+}
+
+.sidecart-item-cart-container {
+  max-height: 60%;
+  overflow-y: auto;
+  border-radius: 0 25px 25px 25px;
+}
+
+.sidecart-checkout-btn {
+  max-height: 10%;
+}
+
+.offcanvas-end {
+  width: 600px !important;
+}
+
+.btn-check:active + .btn-outline-light,
+.btn-check:checked + .btn-outline-light,
+.btn-outline-light.active,
+.btn-outline-light.dropdown-toggle.show,
+.btn-outline-light:active {
+  color: var(--secondary-darker) !important;
+  /*background-color: #f8f9fa;
+  border-color: #f8f9fa;*/
+}
+
+/* Animations Only Here! */
+.pulse {
+  /*margin: 100px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #cca92c;*/
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--secondary-darker);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+
+.shake {
+  animation: shake-animation 4.72s ease infinite;
+  transform-origin: 50% 50%;
+}
+.element {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  background: red;
+}
+@keyframes shake-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  1.78571% {
+    transform: translate(5px, 0);
+  }
+  3.57143% {
+    transform: translate(0, 0);
+  }
+  5.35714% {
+    transform: translate(5px, 0);
+  }
+  7.14286% {
+    transform: translate(0, 0);
+  }
+  8.92857% {
+    transform: translate(5px, 0);
+  }
+  10.71429% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }

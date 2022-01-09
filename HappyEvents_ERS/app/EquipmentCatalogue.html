@@ -4,65 +4,200 @@
     <title>Rental Equipment Catalogue | Happy Events Equipment Rentals</title>
 
     <!-- Required Meta Tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="../styles/style.css" />
 
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
   </head>
   <body>
-      <!-- Offcanvas Shopping Cart -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <!-- Offcanvas Shopping Cart -->
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 600px !important; background-color: #1c9941; color: #fff;">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <p class="offcanvas-title fs-1 fw-bold sniglet-font" id="offcanvasExampleLabel"><i class="fas fa-shopping-cart"></i> My Cart</p>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div>
-        <div class="dropdown mt-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">Dropdown button</button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <div class="text-center fs-3 my-4">Thank you for shopping with us Mr./Ms./Mrs. <span class="fw-bold" id="users-fullname-display">Users Names</span>. We appreciate your <span class="fw-bold">Petronage</span>.</div>
+
+        <div class="my-4 text-center rounded-pill shadow-lg py-2">
+            Cart Total:
+            <span class="fs-1 fw-bold" id="cart-total-display">R0.00</span>
+            <span class="fs-1 fw-bold" id="cart-items-count-display"> (0)</span>
+          </div>
+
+          <div class="sidecart-checkout-btn-container d-grid gap-2 mb-4">
+            <button id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning">Checkout Here! <i class="fas fa-cash-register"></i></button>
         </div>
+
+        <hr class="bg-success mt-4">
+
+        <div class="sidecart-item-cart-container my-4 px-4 py-4 shadow-lg bg-white">
+            <div class="sidecart-item-cart shadow mb-4">
+                <div class="card bg-transparent border-0" style="max-width: 540px">
+                    <div class="row align-items-center g-0">
+                    <div class="col-md-4">
+                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <p class="card-text">
+                        <div class="row align-items-center text-center mx-2">
+                            <div class="col">
+                                <p class="mb-0">Item Amount:</p>
+                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
+                            </div>
+                            <div class="col d-grid gap-2">
+                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="sidecart-item-cart shadow mb-4">
+                <div class="card bg-transparent border-0" style="max-width: 540px">
+                    <div class="row align-items-center g-0">
+                    <div class="col-md-4">
+                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <p class="card-text">
+                        <div class="row align-items-center text-center mx-2">
+                            <div class="col">
+                                <p class="mb-0">Item Amount:</p>
+                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
+                            </div>
+                            <div class="col d-grid gap-2">
+                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
+                                     <i class="fas fa-ban"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="sidecart-item-cart shadow mb-4">
+                <div class="card bg-transparent border-0" style="max-width: 540px">
+                    <div class="row align-items-center g-0">
+                    <div class="col-md-4">
+                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <p class="card-text">
+                        <div class="row align-items-center text-center mx-2">
+                            <div class="col">
+                                <p class="mb-0">Item Amount:</p>
+                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
+                            </div>
+                            <div class="col d-grid gap-2">
+                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
+                                     <i class="fas fa-ban"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="sidecart-item-cart shadow mb-4">
+                <div class="card bg-transparent border-0" style="max-width: 540px">
+                    <div class="row align-items-center g-0">
+                    <div class="col-md-4">
+                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <p class="card-text">
+                        <div class="row align-items-center text-center mx-2">
+                            <div class="col">
+                                <p class="mb-0">Item Amount:</p>
+                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
+                            </div>
+                            <div class="col d-grid gap-2">
+                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
+                                     <i class="fas fa-ban"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sidecart-clear-cart-btn-container d-gridz gap-2z mb-4 text-center">
+          <button id="clear-cart-btn" class="btn btn-danger btn-lg rounded-pill p-4 fw-bold fs-5 shadow-lg border-light border-5 text-white">Clear Cart <i class="fas fa-trash-alt"></i></button>
+        </div>
+        
       </div>
     </div>
     <!-- ./ Offcanvas Shopping Cart -->
 
     <!--Navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-whitez" style="background: #e6f5e5 !important; color: #1c9941 !important">
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5" style="background: #e6f5e5 !important; color: #1c9941 !important">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <!--style="color: #344646 !important"-->
-          <img src="../media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
-        </a>
-        <button class="navbar-toggler shadow rounded-pill p-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="navbar-brand fw-bold fs-3" style="color: #1c9941 !important">
+          <!--href="#"-->
+          <!---->
+          <img src="../media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
+
+          Happy Events Rentals&trade;<span class="sniglet-font">.ERS</span>&copy;
+          <span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner"></i></span>
+        </div>
+
+        <button class="navbar-toggler shadow rounded-pill p-4 mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #1c9941 !important">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="../index.html">Home</a>
+              <a class="nav-link text-center" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../about.html">About</a>
+              <a class="nav-link text-center" href="../about.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Shop</a>
+              <a class="nav-link text-center active" aria-current="page" href="#">Shop</a>
+            </li>
+            <li class="nav-item" id="signin-nav-card">
+              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
+              <a class="nav-link text-center" href="../client-registration.html">Registration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../contact.html">Contact</a>
+              <a class="nav-link text-center" href="../contact.html">Contact</a>
             </li>
           </ul>
         </div>
@@ -71,34 +206,86 @@
     <!--./ End of Navigation Bar-->
 
     <!-- Main Content -->
-    <div class="container my-4">
-      <div class="row sticky-top text-end">
-          <div class="col">
-              Mini Profile Card here
+    <div class="container pb-4">
+        <h1 class="text-center" style="font-size: 70px">Welcome to the Shop! <i class="fas fa-store"></i></h1>
+        <p class="fw-bold text-center">Need to Rent of Buy for an Event? We got you!</p>
+        <hr class="text-success" />
+
+      <div class="row w-100z px-4 py-4 mt-4 mb-0 mx-0 align-items-center" style="border-radius: 25px 25px 0 0; min-height: 25px; background-color: #1c9941">
+        <div class="col -sm text-start">
+          <img src="../media/assets/Happy Events Reward Card.png" alt="" class="img-fluid shadow mb-4" style="border-radius: 25px !important" />
+
+          <div class="mini-profile-card row rounded-pill shadow-sm align-items-center">
+            <div class="col -sm p-2" style="overflow: hidden; border-radius: 50rem">
+              <img src="../media/assets/placeholder.png" alt="" class="img-fluid shadow" />
+            </div>
+            <div class="col-1 p-2 text-center"><i class="fas fa-id-badge text-whitez"></i></div>
+            <div class="col -8 text-start fs-5 fw-bold">@<span id="mini-profile-card-users-username-display">Client_C97SV7</span></div>
           </div>
-          <div class="col text-end">
-            <p>Cart Total: R0.00</p>
-            <button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                View Shopping Cart
-            </button>
+        </div>
+        <div class="col-sm px-4 pt-4 text-start" style="color: #fff">
+            <h5 class="">Are you Buying or looking to Hire?</h5>
+
+            <!--User selects the buy / hire option.-->
+            <div class="btn-group fs-1 mb-4 sniglet-font" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+              <label class="btn btn-outline-light fw-bold" for="btnradio1">Rental</label>
+
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+              <label class="btn btn-outline-light fw-bold" for="btnradio2">Buying</label>
+            </div>
+
+            <div id="rental-duration-container">
+              <h5 class="my-2">Rental Duration:</h5>
+              <div class="mb-3">
+                <label for="rental-duration-start" class="form-label">Start Date:</label>
+                <input type="date" class="form-control rounded-pill" id="rental-duration-start">
+              </div>
+              <div class="mb-3">
+                <label for="rental-duration-end" class="form-label">End Date:</label>
+                <input type="date" class="form-control rounded-pill" id="rental-duration-end">
+              </div>
+              <div class="mb-3 text-end">
+                Number of Days:
+                <span class="fs-1 fw-bold" id="rental-duration-day-count">20</span>
+              </div>
+              <p class="text-warning text-center sniglet-font">Get the Happy Events Reward Card for more Value! <a href="" class="btn btn-outline-light shadow-sm p-3 fs-5 rounded fw-bold unica-one-font">Apply Today</a></p>
+            </div>
+        </div>
       </div>
 
-      <div class="product-card-grid-container">
+      <div class="row sticky-top text-end align-items-center px-4 mb-4 mt-0 mx-0 shadow" style="background-color: #1c9941 !important; color: #fff; border-radius: 0 0 25px 25px">
+        <hr class="text-white">
+        <div class="col-sm -8 text-center pt-4z d-grid gap-2">
+          <!--Horizontal mini preview card list (cart items)
+          <button class="btn btn-outline-danger p-4 rounded-pill">Hide</button>-->
+          <div class="my-2 fs-3z">
+            Cart Total:
+            <span class="fs-1 fw-bold" id="cart-total-display">R0.00</span>
+            <span class="fs-1 fw-bold" id="cart-items-count-display"> (0)</span>
+          </div>
+        </div>
+        <div class="col-sm -4 text-center py-4 d-grid gap-2">
+          <button class="btn btn-outline-light rounded-pill p-3 fs-5 sniglet-font" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">View Shopping Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card-grid-container my-4">
         <div class="product-card">
-          <div class="card bg-transparent w-100 p-0">
+          <div class="card bg-transparent w-100 p-2">
             <!--style="width: 18rem"-->
-            <img src="../media/assets/placeholder.png" class="card-img-top" alt="..." />
+            <img src="../media/assets/placeholder.png" class="card-img-top shadow" alt="..." style="border-radius: 25px !important" />
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-outline-warning rounded-pill">Add to Cart</a>
+              <h3 class="card-title fs-1">Card title</h3>
+              <p class="fs-2">1 Day Hire Fee: R1.00</p>
+              <p class="fs-2">Buy for: R100.00</p>
+              <p class="card-text fs-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-grid gap-2 text-center">
+                <a href="#" class="btn btn-warning btn-lg rounded-pill shadow fs-1 sniglet-font-thick text-success"> Add to Cart <i class="fas fa-cart-plus"></i></a>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="product-card">hi</div>
-        <div class="product-card">hi</div>
-        <div class="product-card">hi</div>
       </div>
     </div>
     <!-- ./ of Main Content -->
@@ -107,13 +294,13 @@
     <div class="footer mb-0 pt-4">
       <div class="container">
         <div class="row">
-          <div class="col text-center pb-4">
-            <img src="../media/assets/Happy Events without Logo with BG_tight.png" alt="logo" class="img-fluid shadow" style="border-radius: 25px" />
+          <div class="col-md text-center pb-4">
+            <img src="../media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow btn-success" style="border-radius: 25px" />
 
-            <p class="mt-4"><strong>Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
+            <p class="mt-4"><strong class="unica-one-font">Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
           </div>
-          <div class="col text-start pb-4">
-            <h2 class="text-start">Navigation</h2>
+          <div class="col-md text-start pb-4">
+            <h2 class="text-start sniglet-font-thick">Navigation</h2>
             <ul class="list-group list-group-flush py-4" id="footer-navigation">
               <li class="list-group-item bg-transparent"><a href="#">Home</a></li>
               <li class="list-group-item bg-transparent"><a href="about.html">About</a></li>
@@ -122,7 +309,7 @@
               <li class="list-group-item bg-transparent"><a href="contact.html">Contact</a></li>
             </ul>
 
-            <h2 class="text-start">Important Links</h2>
+            <h2 class="text-start sniglet-font-thick">Important Links</h2>
             <ul class="list-group list-group-flush py-4" id="footer-navigation">
               <li class="list-group-item bg-transparent"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
               <li class="list-group-item bg-transparent"><a href="#">Privacy Policy</a></li>
@@ -130,8 +317,8 @@
               <li class="list-group-item bg-transparent"><a href="#">Terms of Use</a></li>
             </ul>
           </div>
-          <div class="col pb-4">
-            <h2>Sign up for our Newsletter</h2>
+          <div class="col-md pb-4">
+            <h2 class="sniglet-font-thick">Sign up for our Newsletter</h2>
             <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discounts (if you are a registered client).</p>
             <form class="row g-3">
               <div class="col-auto">
@@ -145,7 +332,7 @@
           </div>
         </div>
 
-        <hr />
+        <hr class="text-white"/>
 
         <div class="w-100 text-center">
           <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
