@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("../../scripts/config.php");
+    include("../scripts/config.php");
 
     //Connection Test==============================================>
         // Check connection
@@ -55,7 +55,6 @@
         $dbconn->close();
 
         //navigate user to the Admin App Page
+        header("Location: admin-app/admin.html?id=$user_id");
     }
-
-    
 ?>

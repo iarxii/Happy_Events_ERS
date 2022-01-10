@@ -52,39 +52,7 @@
 
     if(!$result) die("<div class='alert alert-danger text-center'>A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.</div><br><br><a href='index.html'>Return to Home Page</a>");
 
-    echo "Operation Complete."
-
-    /*$rows = $result->num_rows;
-
-    if($rows==0) {
-        //there is no result so notify user that the account cannot be found
-        echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
-    } else {
-        for ($j = 0; $j < $rows ; ++$j) {
-            $row = $result->fetch_array(MYSQLI_ASSOC);
-
-            $user_id = htmlspecialchars($row['Client_id']);
-            $user_fname = htmlspecialchars($row['first_name']);
-            $user_lname = htmlspecialchars($row['last_name']);
-            $user_contact = htmlspecialchars($row['contact_number']);
-            $user_email = htmlspecialchars($row['email_address']);
-            $user_type = htmlspecialchars($row['user_type']);
-            $user_reg_date = htmlspecialchars($row['registration_date']);
-
-            /*echo $user_id."<br>";
-            echo $user_fname."<br>";
-            echo $user_lname."<br>";
-            echo $user_contact."<br>";
-            echo $user_email."<br>";
-            echo $user_type."<br>";
-            echo $user_reg_date."<br><br>";
-        }
-
-        $result->close();
-        $dbconn->close();
-
-        //navigate user to the Equipment Catalogue
-    }*/
+    echo '<div class="alert alert-success p-4 text-center w-100">Operation Completed Successfully.</div>';
 
     
 ?>
@@ -103,6 +71,47 @@
   </head>
 
   <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5z" style="background: #e6f5e5 !important; color: #1c9941 !important; overflow-x: hidden">
+      <div class="container">
+        <div class="navbar-brand fw-bold d-block fs-3z" style="color: #1c9941 !important">
+          <!--href="#"-->
+          <!---->
+          <img src="media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
+
+          Happy Events Rentals&trade;<span class="sniglet-font">.ERS</span>&copy;
+          <span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner"></i></span>
+        </div>
+
+        <button class="navbar-toggler shadow rounded-pill p-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #1c9941 !important">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-center" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="app/EquipmentCatalogue.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-center" aria-current="page" href="#">Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- ./ Navigation Bar -->
+
       <h1 class="text-center">Thank you for registering an account with us.</h1>
 
       <div class="container">

@@ -4,9 +4,9 @@
     <title>Rental Equipment Catalogue | Happy Events Equipment Rentals</title>
 
     <!-- Required Meta Tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -21,8 +21,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <!-- Sign In Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="clientSignInModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="clientSignInModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="border-radius: 25px !important; overflow: hidden !important">
+        <div class="modal-content shadow border border-success border-3" style="border-radius: 25px !important; overflow: hidden">
+          <div class="modal-header gray-bg border-warning border-bottom border-3">
+            <img src="../media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 80px !important; border-radius: 25px; border: solid #1c9941 0px" />
+            <h5 class="modal-title fs-3 mx-4 fw-bold" id="clientSignInModalLabel">Client Sign In!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body fs-3 fw-bold sniglet-font text-center" style="color: #1c9941 !important">
+            <form action="../client-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form">
+              <div class="mb-3">
+                <label for="signInInputUsername" class="form-label">Username</label>
+                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" />
+              </div>
+              <div class="mb-3">
+                <label for="signInInputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4" id="signInInputPassword" name="signInInputPassword" />
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1 fw-bold">Sign In!</button>
+              </div>
+              <!--<div class="text-center">
+                <a href="#client-reg-label" data-bs-dismiss="modal">Don't have an account? Register one.</a>
+              </div>-->
+            </form>
+          </div>
+          <div class="modal-footer text-center d-grid gap-2 bg-success" style="border-radius: 25px 25px 0 0">
+            <div class="d-grid gap-2 w-100">
+              <a type="button" class="btn btn-warning rounded-pill sniglet-font text-success" href="client-registration.html">Don't have an account? Register one >>></a>
+            </div>
+            <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ Sign In Modal -->
+
     <!-- Offcanvas Shopping Cart -->
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 600px !important; background-color: #1c9941; color: #fff;">
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 600px !important; background-color: #1c9941; color: #fff">
       <div class="offcanvas-header">
         <p class="offcanvas-title fs-1 fw-bold sniglet-font" id="offcanvasExampleLabel"><i class="fas fa-shopping-cart"></i> My Cart</p>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -31,19 +70,17 @@
         <div class="text-center fs-3 my-4">Thank you for shopping with us Mr./Ms./Mrs. <span class="fw-bold" id="users-fullname-display">Users Names</span>. We appreciate your <span class="fw-bold">Petronage</span>.</div>
 
         <div class="my-4 text-center rounded-pill shadow-lg py-2">
-            Cart Total:
-            <span class="fs-1 fw-bold" id="cart-total-display">R0.00</span>
-            <span class="fs-1 fw-bold" id="cart-items-count-display"> (0)</span>
-          </div>
-
-          <div class="sidecart-checkout-btn-container d-grid gap-2 mb-4">
-            <button id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning">Checkout Here! <i class="fas fa-cash-register"></i></button>
+          Cart Total: <span class="fs-1 fw-bold">R<span id="cart-total-display-cart">0.00</span> (<span id="cart-items-count-display-cart">0</span>)</span>
         </div>
 
-        <hr class="bg-success mt-4">
+        <div class="sidecart-checkout-btn-container d-grid gap-2 mb-4">
+          <button id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning">Checkout Here! <i class="fas fa-cash-register"></i></button>
+        </div>
 
-        <div class="sidecart-item-cart-container my-4 px-4 py-4 shadow-lg bg-white">
-            <div class="sidecart-item-cart shadow mb-4">
+        <hr class="bg-success mt-4" />
+
+        <!-- ******* .mini-profile-card code snippet
+          <div class="sidecart-item-cart shadow mb-4">
                 <div class="card bg-transparent border-0" style="max-width: 540px">
                     <div class="row align-items-center g-0">
                     <div class="col-md-4">
@@ -71,103 +108,23 @@
                     </p>
                 </div>
             </div>
-            <div class="sidecart-item-cart shadow mb-4">
-                <div class="card bg-transparent border-0" style="max-width: 540px">
-                    <div class="row align-items-center g-0">
-                    <div class="col-md-4">
-                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
-                            
-                        </div>
-                    </div>
-                    </div>
-                    <p class="card-text">
-                        <div class="row align-items-center text-center mx-2">
-                            <div class="col">
-                                <p class="mb-0">Item Amount:</p>
-                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
-                            </div>
-                            <div class="col d-grid gap-2">
-                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
-                                     <i class="fas fa-ban"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </p>
-                </div>
-            </div>
-            <div class="sidecart-item-cart shadow mb-4">
-                <div class="card bg-transparent border-0" style="max-width: 540px">
-                    <div class="row align-items-center g-0">
-                    <div class="col-md-4">
-                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
-                            
-                        </div>
-                    </div>
-                    </div>
-                    <p class="card-text">
-                        <div class="row align-items-center text-center mx-2">
-                            <div class="col">
-                                <p class="mb-0">Item Amount:</p>
-                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
-                            </div>
-                            <div class="col d-grid gap-2">
-                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
-                                     <i class="fas fa-ban"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </p>
-                </div>
-            </div>
-            <div class="sidecart-item-cart shadow mb-4">
-                <div class="card bg-transparent border-0" style="max-width: 540px">
-                    <div class="row align-items-center g-0">
-                    <div class="col-md-4">
-                        <img src="../media/assets/placeholder.png" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="..." />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title fs-2 fw-boldz text-center">Card title</h5>
-                            
-                        </div>
-                    </div>
-                    </div>
-                    <p class="card-text">
-                        <div class="row align-items-center text-center mx-2">
-                            <div class="col">
-                                <p class="mb-0">Item Amount:</p>
-                                <p class="fs-1 fw-bold" id="cart-total-display">R0.00 </p>
-                            </div>
-                            <div class="col d-grid gap-2">
-                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1">
-                                     <i class="fas fa-ban"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </p>
-                </div>
-            </div>
+        -->
+        <div class="sidecart-item-cart-container my-4 px-4 py-4 shadow-lg bg-white" id="sidecart-item-cart-container">
+          <h1 class="fw-bold text-center my-4 text-success" id="no-items-label">
+            <span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner"></i></span> Pick out something you like!
+          </h1>
         </div>
         <div class="sidecart-clear-cart-btn-container d-gridz gap-2z mb-4 text-center">
           <button id="clear-cart-btn" class="btn btn-danger btn-lg rounded-pill p-4 fw-bold fs-5 shadow-lg border-light border-5 text-white">Clear Cart <i class="fas fa-trash-alt"></i></button>
         </div>
-        
       </div>
     </div>
     <!-- ./ Offcanvas Shopping Cart -->
 
     <!--Navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5" style="background: #e6f5e5 !important; color: #1c9941 !important">
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5z" style="background: #e6f5e5 !important; color: #1c9941 !important">
       <div class="container">
-        <div class="navbar-brand fw-bold fs-3" style="color: #1c9941 !important">
+        <div class="navbar-brand fw-bold fs-3z" style="color: #1c9941 !important; overflow-x: hidden">
           <!--href="#"-->
           <!---->
           <img src="../media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
@@ -207,62 +164,71 @@
 
     <!-- Main Content -->
     <div class="container pb-4">
-        <h1 class="text-center" style="font-size: 70px">Welcome to the Shop! <i class="fas fa-store"></i></h1>
-        <p class="fw-bold text-center">Need to Rent of Buy for an Event? We got you!</p>
-        <hr class="text-success" />
+      <h1 class="text-center" style="font-size: 70px">Welcome to the Shop! <i class="fas fa-store"></i></h1>
+      <p class="fw-bold text-center">Need to Rent of Buy for an Event? We got you!</p>
+      <hr class="text-success" />
 
       <div class="row w-100z px-4 py-4 mt-4 mb-0 mx-0 align-items-center" style="border-radius: 25px 25px 0 0; min-height: 25px; background-color: #1c9941">
         <div class="col -sm text-start">
           <img src="../media/assets/Happy Events Reward Card.png" alt="" class="img-fluid shadow mb-4" style="border-radius: 25px !important" />
 
-          <div class="mini-profile-card row rounded-pill shadow-sm align-items-center">
-            <div class="col -sm p-2" style="overflow: hidden; border-radius: 50rem">
-              <img src="../media/assets/placeholder.png" alt="" class="img-fluid shadow" />
+          <div class="mini-profile-card row shadow-sm align-items-end" style="border-radius: 0 25px 25px 25px">
+            <div class="col-sm p-2" style="overflow: hidden">
+              <img src="../media/user_profile_images/IARXII_SAN.jpg" alt="profile picture" class="img-fluid shadow" style="border-radius: 0 50rem 50rem 50rem !important; border: #1c9941 solid 4px" />
             </div>
-            <div class="col-1 p-2 text-center"><i class="fas fa-id-badge text-whitez"></i></div>
-            <div class="col -8 text-start fs-5 fw-bold">@<span id="mini-profile-card-users-username-display">Client_C97SV7</span></div>
+
+            <div class="col -8 text-center fs-5 fw-boldz border-warning mb-4">
+              <h5 class="text-center">Thabang Mposula</h5>
+
+              <div class="px-4 border-warning" style="border-bottom: #1c9941 solid 5px; border-radius: 0 0 25px 25px; font-size: 10px">
+                <span id="mini-profile-card-users-username-display m-4" class="barcode-font">Client_C97SV7</span>
+              </div>
+            </div>
+
+            <div class="col-2 p-2 text-center border-warning" style="border-left: #1c9941 solid 5px; border-bottom: #1c9941 solid 5px; border-top-left-radius: 25px; border-bottom-right-radius: 25px">
+              <i class="fas fa-id-badge text-whitez"></i>
+            </div>
           </div>
         </div>
         <div class="col-sm px-4 pt-4 text-start" style="color: #fff">
-            <h5 class="">Are you Buying or looking to Hire?</h5>
+          <h5 class="">Are you Buying or looking to Hire?</h5>
 
-            <!--User selects the buy / hire option.-->
-            <div class="btn-group fs-1 mb-4 sniglet-font" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-light fw-bold" for="btnradio1">Rental</label>
+          <!--User selects the buy / hire option.-->
+          <div class="btn-group fs-1 mb-4 sniglet-font" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+            <label class="btn btn-outline-light fw-bold" for="btnradio1">Rental</label>
 
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-light fw-bold" for="btnradio2">Buying</label>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+            <label class="btn btn-outline-light fw-bold" for="btnradio2">Buying</label>
+          </div>
+
+          <div id="rental-duration-container">
+            <h5 class="my-2">Rental Duration:</h5>
+            <div class="mb-3">
+              <label for="rental-duration-start" class="form-label">Start Date:</label>
+              <input type="date" class="form-control rounded-pill" onchange="calcRentalDuration()" id="rental-duration-start" />
             </div>
-
-            <div id="rental-duration-container">
-              <h5 class="my-2">Rental Duration:</h5>
-              <div class="mb-3">
-                <label for="rental-duration-start" class="form-label">Start Date:</label>
-                <input type="date" class="form-control rounded-pill" id="rental-duration-start">
-              </div>
-              <div class="mb-3">
-                <label for="rental-duration-end" class="form-label">End Date:</label>
-                <input type="date" class="form-control rounded-pill" id="rental-duration-end">
-              </div>
-              <div class="mb-3 text-end">
-                Number of Days:
-                <span class="fs-1 fw-bold" id="rental-duration-day-count">20</span>
-              </div>
-              <p class="text-warning text-center sniglet-font">Get the Happy Events Reward Card for more Value! <a href="" class="btn btn-outline-light shadow-sm p-3 fs-5 rounded fw-bold unica-one-font">Apply Today</a></p>
+            <div class="mb-3">
+              <label for="rental-duration-end" class="form-label">End Date:</label>
+              <input type="date" class="form-control rounded-pill" onchange="calcRentalDuration()" id="rental-duration-end" />
             </div>
+            <div class="mb-3 text-end">
+              Number of Days:
+              <span class="fs-1 fw-bold" id="rental-duration-day-count">0</span>
+            </div>
+            <p class="text-warning text-center sniglet-font">Get the Happy Events Reward Card for more Value! <a href="" class="btn btn-outline-light shadow-sm p-3 fs-5 rounded fw-bold unica-one-font">Apply Today</a></p>
+          </div>
         </div>
       </div>
 
       <div class="row sticky-top text-end align-items-center px-4 mb-4 mt-0 mx-0 shadow" style="background-color: #1c9941 !important; color: #fff; border-radius: 0 0 25px 25px">
-        <hr class="text-white">
+        <hr class="text-white" />
         <div class="col-sm -8 text-center pt-4z d-grid gap-2">
           <!--Horizontal mini preview card list (cart items)
           <button class="btn btn-outline-danger p-4 rounded-pill">Hide</button>-->
           <div class="my-2 fs-3z">
             Cart Total:
-            <span class="fs-1 fw-bold" id="cart-total-display">R0.00</span>
-            <span class="fs-1 fw-bold" id="cart-items-count-display"> (0)</span>
+            <span class="fs-1 fw-bold">R<span id="cart-total-display">0.00</span> (<span id="cart-items-count-display">0</span>)</span>
           </div>
         </div>
         <div class="col-sm -4 text-center py-4 d-grid gap-2">
@@ -270,10 +236,10 @@
         </div>
       </div>
 
-      <div class="product-card-grid-container my-4">
+      <!-- 
+        *******Product Cart Code Snippet
         <div class="product-card">
           <div class="card bg-transparent w-100 p-2">
-            <!--style="width: 18rem"-->
             <img src="../media/assets/placeholder.png" class="card-img-top shadow" alt="..." style="border-radius: 25px !important" />
             <div class="card-body">
               <h3 class="card-title fs-1">Card title</h3>
@@ -286,6 +252,9 @@
             </div>
           </div>
         </div>
+      -->
+      <div class="product-card-grid-container my-4" id="product-card-grid-container">
+        <h1 class="fw-bold text-center my-4">Uh-oh... No products to display! &#128517;</h1>
       </div>
     </div>
     <!-- ./ of Main Content -->
@@ -332,7 +301,7 @@
           </div>
         </div>
 
-        <hr class="text-white"/>
+        <hr class="text-white" />
 
         <div class="w-100 text-center">
           <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
@@ -340,6 +309,155 @@
       </div>
     </div>
     <!--./ end of footer-->
+
+    <!-- Javascript Code -->
+    <script>
+      //******* Store: Product List
+      //We want to load the Products list using Ajax and PHP to compile a body of .product-card Div Elements for the product-card-grid-container Div Container Element.
+      function loadProducts() {
+        //Initialize Variables
+        var productsContainer = document.getElementById("product-card-grid-container");
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+          productsContainer.innerHTML = this.responseText;
+        };
+        xhttp.open("GET", "compile-product-list.php?entry=pageinit", true);
+        xhttp.send();
+      }
+
+      //******* Store: Rental Duration Calculator
+      //We want to calculate the number of days between the Rental Start Date and the Rental End Date.
+
+      function calcRentalDuration() {
+        //Initialize Variables
+        var initRentStartDate = document.getElementById("rental-duration-start");
+        var initRentEndDate = document.getElementById("rental-duration-end");
+
+        // To set two dates to two variables
+        var startDate = new Date(initRentStartDate.value);
+        var endDate = new Date(initRentEndDate.value);
+
+        // To calculate the time difference of two dates
+        var Difference_In_Time = endDate.getTime() - startDate.getTime();
+
+        // To calculate the no. of days between two dates
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        if (Difference_In_Days < 0) {
+          alert("Error: The Rental End Date cannot be a Date before the Rental Start Date.");
+          initRentStartDate.value = new Date();
+          initRentEndDate.value = new Date();
+          Difference_In_Days = 0;
+        }
+
+        if (startDate.getDate("MM/DD/YYYY") == endDate.getDate("MM/DD/YYYY")) {
+          Difference_In_Days = 1;
+        }
+
+        if (isNaN(Difference_In_Days)) {
+          Difference_In_Days = `<span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner"></i></span>`;
+        }
+
+        //Update the #rental-duration-day-count eleme with the calculated no. of days (result)
+        document.getElementById("rental-duration-day-count").innerHTML = Difference_In_Days;
+      }
+
+      //******* Store: Cart - Transfer User to Checkout landing page
+      //We want to navigate to the checkout-landing.html?checkoutamt=value&cartitems=value
+
+      //******* Store: Cart - Clear Cart
+      //We want to clear / remove all child .sidecart-item-cart Div Elements and insert an H3 Element that displays: "No items yet. Pick out something you like!".
+
+      //******* Store: Cart - Add an item to the Cart
+      //We want to create a .sidecart-item-cart Div Element of the selected item from the product list into the Cart .sidecart-item-cart-container Div Container Element.
+      //addCartItem('$product_id','$product_name','$product_sellprice','$product_rentprice','$product_itemcode','$product_binnumber'."','".$img_preview_url)
+      function addCartItem(prodid, prodname, prodsellprice, prodrentprice, proditemcode, prodbinnumber, imgpreview) {
+        var selCartItemsContainer = document.getElementById("sidecart-item-cart-container");
+
+        var cartTotalDisplay = document.getElementById("cart-total-display");
+        var cartItemCountDisplay = document.getElementById("cart-items-count-display");
+
+        var cartTotalDisplayCart = document.getElementById("cart-total-display-cart");
+        var cartItemCountDisplayCart = document.getElementById("cart-items-count-display-cart");
+
+        //hide this label
+        document.getElementById("no-items-label").style.display = "none";
+
+        let miniItemCardDiv = document.createElement("div");
+
+        miniItemCardDiv.classList.add("sidecart-item-cart");
+        miniItemCardDiv.classList.add("shadow");
+        miniItemCardDiv.classList.add("mb-4");
+
+        miniItemCardDiv.id = "cart-item-prod-card-" + prodid;
+
+        miniItemCardDiv.innerHTML =
+          `<div class="card bg-transparent border-0" style="max-width: 540px">
+                    <div class="row align-items-center g-0">
+                    <div class="col-md-4 text-center">
+                        <img src="../media/general/product_imgs/` +
+          imgpreview +
+          `" class="img-fluid rounded-start m-2 shadow" style="max-height: 100px !important" alt="Img Preview: ` +
+          prodname +
+          `" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2 fw-boldz text-center">` +
+          prodname +
+          `</h5>
+                        </div>
+                    </div>
+                    </div>
+                    <p class="card-text">
+                        <div class="row align-items-center text-center mx-2">
+                            <div class="col-sm">
+                                <p class="mb-0">Item Amount:</p>
+                                <p class="fs-1 fw-bold" id="cart-total-display">R` +
+          prodsellprice +
+          `</p>
+                            </div>
+                            <div class="col-sm d-grid gap-2">
+                                <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1" onclick="removeCartItem('cart-item-prod-card-` +
+          prodid +
+          `')">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </p>
+                </div>`;
+
+        selCartItemsContainer.appendChild(miniItemCardDiv);
+
+        //calculate the cartItemCount and cartTotalAmt's
+        cartItemCount = parseInt(cartItemCountDisplay.innerText) + 1;
+        cartTotalAmt = parseInt(cartTotalDisplay.innerHTML) + parseInt(prodsellprice);
+
+        cartItemCountDisplay.innerText = cartItemCount;
+        cartTotalDisplay.innerText = cartTotalAmt;
+
+        cartItemCountDisplayCart.innerText = cartItemCount;
+        cartTotalDisplayCart.innerText = cartTotalAmt;
+
+        alert("Notice! \n\nItem added to Cart: \n\nProduct Name: [ " + prodname + " ] \n\nProduct Price: [R" + prodsellprice + " ] \n\nItems in Cart [ " + cartItemCount + " ] \n\nCart Total: [ " + cartTotalAmt + " ]");
+      }
+
+      //******* Store: Cart - Remove a Single Cart item
+      //We want to Remove a Single Cart item from the Carts Items List in the Cart when we click a remove item button.
+      function removeCartItem(elemid) {
+        //show this label
+        document.getElementById("no-items-label").style.display = "block";
+
+        var elem = document.getElementById(elemid);
+        return elem.parentNode.removeChild(elem);
+      }
+
+      //On load: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      document.addEventListener("load", loadProducts());
+    </script>
+    <!-- ,/ Javascript Code -->
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

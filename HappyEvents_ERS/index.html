@@ -25,43 +25,45 @@
     <!-- Modal -->
     <div class="modal fade" id="clientSignInModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="clientSignInModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" style="border-radius: 25px !important; overflow: hidden !important">
-        <div class="modal-content">
-          <div class="modal-header gray-bg">
-            <h5 class="modal-title fs-3" id="clientSignInModalLabel">Client Sign In</h5>
+        <div class="modal-content shadow border border-success border-3" style="border-radius: 25px !important; overflow: hidden">
+          <div class="modal-header gray-bg border-warning border-bottom border-3">
+            <img src="media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 80px !important; border-radius: 25px; border: solid #1c9941 0px" />
+            <h5 class="modal-title fs-3 mx-4 fw-bold" id="clientSignInModalLabel">Client Sign In!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" style="color: #1c9941 !important">
+          <div class="modal-body fs-3 fw-bold sniglet-font text-center" style="color: #1c9941 !important">
             <form action="client-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form">
               <div class="mb-3">
                 <label for="signInInputUsername" class="form-label">Username</label>
-                <input type="text" class="form-control rounded-pill text-center" id="signInInputUsername" name="signInInputUsername" />
+                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" />
               </div>
               <div class="mb-3">
                 <label for="signInInputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control rounded-pill text-center" id="signInInputPassword" name="signInInputPassword" />
+                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4" id="signInInputPassword" name="signInInputPassword" />
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1">Sign In</button>
+                <button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1 fw-bold">Sign In!</button>
               </div>
               <!--<div class="text-center">
                 <a href="#client-reg-label" data-bs-dismiss="modal">Don't have an account? Register one.</a>
               </div>-->
             </form>
           </div>
-          <div class="modal-footer text-center d-grid gap-2 bg-success">
+          <div class="modal-footer text-center d-grid gap-2 bg-success" style="border-radius: 25px 25px 0 0">
             <div class="d-grid gap-2 w-100">
-              <a type="button" class="btn btn-light rounded-pill sniglet-font text-success" href="client-registration.html">Don't have an account? Register one >>></a>
+              <a type="button" class="btn btn-warning rounded-pill sniglet-font text-success" href="client-registration.html">Don't have an account? Register one >>></a>
             </div>
             <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
           </div>
         </div>
       </div>
     </div>
+    <!-- ./ Sign In Modal -->
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5" style="background: #e6f5e5 !important; color: #1c9941 !important">
+    <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5z" style="background: #e6f5e5 !important; color: #1c9941 !important">
       <div class="container">
-        <div class="navbar-brand fw-bold d-block fs-3" style="color: #1c9941 !important">
+        <div class="navbar-brand fw-bold d-block fs-3z" style="color: #1c9941 !important; overflow-x: hidden">
           <!--href="#"-->
           <!---->
           <img src="media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 150px !important; border-radius: 25px; border: solid #1c9941 0px" />
@@ -143,6 +145,7 @@
         <span class="visually-hidden">Next</span>
       </button>-->
     </div>
+    <!-- ./ Carousel -->
 
     <!-- Main -->
     <hr class="bg-white" />
@@ -166,7 +169,7 @@
           <h2 class="text-center sniglet-font-thick" id="client-reg-label">Register today, It's Free!</h2>
           <p>Register today and get your first 30%-Off rental discount and go on to browse our extensive catalogue.</p>
           <hr class="text-success" />
-          <form action="client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow" id="homepage-client-registration-form">
+          <form action="client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow fs-3" id="homepage-client-registration-form">
             <div id="emailHelp" class="form-text text-center p-4 fw-bold sniglet-font -thick" style="color: #e6f5e5 !important">Please take note that we will never share your email address and contact number with anyone else.</div>
             <div class="mb-3">
               <label for="clientRegInputTitlee" class="form-label">Title</label>

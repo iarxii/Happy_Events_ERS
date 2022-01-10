@@ -10,8 +10,7 @@
   background-color: var(--primarycolor) !important;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Sniglet:wght@400;800&family=Unica+One&display=swap");
 
 body {
   background-color: var(--primarycolor);
@@ -40,6 +39,10 @@ h5 {
 
 .unica-one-font {
   font-family: "Unica One", cursive;
+}
+
+.barcode-font {
+  font-family: "Libre Barcode 39 Text", cursive;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -145,10 +148,10 @@ h5 {
   overflow: hidden;
 }
 
-.mini-profile-card img {
-  border-radius: 50rem;
+/*.mini-profile-card img {
+  border-radius: 25px !important;
   border: #1c9941 solid 4px;
-}
+}*/
 
 .sidecart-item-cart {
   border-radius: 0 25px 25px 25px;
