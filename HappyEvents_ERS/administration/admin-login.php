@@ -29,7 +29,8 @@
 
     if($rows==0) {
         //there is no result so notify user that the account cannot be found
-        echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+        //echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+        header("Location: admin-index.php?return=unf&usrnm=$username");
     } else {
         for ($j = 0; $j < $rows ; ++$j) {
             $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -54,7 +55,17 @@
         $result->close();
         $dbconn->close();
 
+        //set up session variables and set values
+        $_SESSION['admin_auth'] = true;
+        $_SESSION['admin_id'] = $user_id;
+        $_SESSION['admin_fname'] = $user_fname;
+        $_SESSION['admin_lname'] = $user_lname;
+        $_SESSION['admin_contact'] = $user_contact;
+        $_SESSION['admin_email'] = $user_email;
+        $_SESSION['admin_type'] = $user_type;
+        $_SESSION['admin_regdate'] = $user_reg_date;
+
         //navigate user to the Admin App Page
-        header("Location: admin-app/admin.html?id=$user_id");
+        header("Location: admin-app/admin.php?adminauth=true&id=$user_id");
     }
 ?>

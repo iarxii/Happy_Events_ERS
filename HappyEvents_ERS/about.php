@@ -1,3 +1,111 @@
+<?php
+  session_start();
+  include("scripts/config.php");
+
+  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Check User Account Loggin Status
+  function generateRandomString($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
+
+  $randStr = generateRandomString(6);
+
+  $user_id = null;
+  $username = "Client_".$randStr;
+  $user_fname = "Client";
+  $user_lname = $randStr;
+  $user_contact = "contact_number_pending";
+  $user_email = "email_pending";
+  $user_type = "Prospective";
+  $user_reg_date = date("Y-m-d H:i:s");
+
+  $user_profile_pic = "default.png";
+
+  $userloggedin = "false";
+
+  //define("usersignedin", false, true);
+  //echo usersignedin;
+
+  if (isset($_SESSION['userauth'])) {
+    
+    if($_SESSION['userauth'] == true){
+      # load these details instead of querying them
+      $user_id = htmlspecialchars($_SESSION['userid']);
+      $username = htmlspecialchars($_SESSION['username']);
+      $user_fname = htmlspecialchars($_SESSION['fname']);
+      $user_lname = htmlspecialchars($_SESSION['lname']);
+      $user_contact = htmlspecialchars($_SESSION['contact']);
+      $user_email = htmlspecialchars($_SESSION['email']);
+      $user_type = htmlspecialchars($_SESSION['type']);
+      $user_reg_date = htmlspecialchars($_SESSION['regdate']);
+      $user_profile_pic = htmlspecialchars($_SESSION['profpic']);
+
+      $userloggedin = "true";
+    }
+    
+  }
+  /*else{
+    if(isset($_GET['userauth'])){
+      //get the account details of the user id
+      if($_GET['userauth'] == true){
+        //Declaring variables
+        $userid = mysql_fix_string($dbconn,$_GET['id']);
+
+        $query = "SELECT * FROM Clients WHERE Client_id = $userid";
+        $result = $dbconn->query($query);
+        if(!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
+
+        $rows = $result->num_rows;
+
+        if($rows==0) {
+            //there is no result so notify user that the account cannot be found
+            //echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+            header("Location: index.php?return=unf&usrnm=Error");
+        } else {
+            for ($j = 0; $j < $rows ; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $user_id = htmlspecialchars($row['Client_id']);
+                $username = htmlspecialchars($row['username']);
+                $user_fname = htmlspecialchars($row['first_name']);
+                $user_lname = htmlspecialchars($row['last_name']);
+                $user_contact = htmlspecialchars($row['contact_number']);
+                $user_email = htmlspecialchars($row['email_address']);
+                $user_type = htmlspecialchars($row['user_type']);
+                $user_reg_date = htmlspecialchars($row['registration_date']);
+            }
+
+            $userloggedin = "true";
+            $user_profile_pic = "IARXII_SAN.jpg";
+
+            $_SESSION['userauth'] = mysql_fix_string($dbconn,$_GET['userauth']);
+            $_SESSION['userid'] = mysql_fix_string($dbconn, $user_id);
+            $_SESSION['username'] = mysql_fix_string($dbconn, $username);
+            $_SESSION['fname'] = mysql_fix_string($dbconn, $user_fname);
+            $_SESSION['lname'] = mysql_fix_string($dbconn, $user_lname);
+            $_SESSION['contact'] = mysql_fix_string($dbconn, $user_contact);
+            $_SESSION['email'] = mysql_fix_string($dbconn, $user_email);
+            $_SESSION['type'] = mysql_fix_string($dbconn, $user_typ);
+            $_SESSION['regdate'] = mysql_fix_string($dbconn, $user_reg_date);
+            $_SESSION['profpic'] = mysql_fix_string($dbconn, $user_profile_pic);
+
+            $result->close();
+            $dbconn->close();
+        }
+
+      }
+      
+    }
+  }*/
+  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ./ Check User Account Loggin Status
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,19 +138,18 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body fs-3 fw-bold sniglet-font text-center" style="color: #1c9941 !important">
-            <form action="client-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form">
+            <form action="client-login.php" method="post" autocomplete="on" id="client-login-form" class="text-center">
               <div class="mb-3">
                 <label for="signInInputUsername" class="form-label">Username</label>
-                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" />
+                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" value="" />
               </div>
               <div class="mb-3">
                 <label for="signInInputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4" id="signInInputPassword" name="signInInputPassword" />
+                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4 text-center" id="signInInputPassword" name="signInInputPassword" />
               </div>
-              <div class="d-grid"><button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1 fw-bold"Client Sign In!/button></div>
-              <!--<div class="text-center">
-                <a href="#client-reg-label" data-bs-dismiss="modal">Don't have an account? Register one.</a>
-              </div>-->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1 fw-bold">Sign In!</button>
+              </div>
             </form>
           </div>
           <div class="modal-footer text-center d-grid gap-2 bg-success" style="border-radius: 25px 25px 0 0">
@@ -74,22 +181,28 @@
         <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-center" href="index.html">Home</a>
+              <a class="nav-link text-center" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="app/EquipmentCatalogue.php">Shop</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active text-center" aria-current="page" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="app/EquipmentCatalogue.html">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
+              <a class="nav-link text-center" href="contact.php">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-center" href="client-registration.html">Registration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="contact.html">Contact</a>
+              <?php
+                if($userloggedin === "true"){
+                  echo '<a class="nav-link text-center" href="app/EquipmentCatalogue.php#mini-profile-card"><i class="fas fa-id-badge"></i> @'.$username.'</a>';
+                }else{
+                  echo '<a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>';
+                }
+              ?>
             </li>
           </ul>
         </div>
@@ -208,7 +321,7 @@
               <li class="list-group-item bg-transparent"><a href="about.html">About</a></li>
               <li class="list-group-item bg-transparent"><a href="#">Shop</a></li>
               <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
-              <li class="list-group-item bg-transparent"><a href="contact.html">Contact</a></li>
+              <li class="list-group-item bg-transparent"><a href="contact.php">Contact</a></li>
             </ul>
 
             <h2 class="text-start sniglet-font-thick">Important Links</h2>

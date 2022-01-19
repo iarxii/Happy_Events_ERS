@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Happy Events Equipment Rentals</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="../../styles/style.css" />
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Main Body -->
+    <div class="container">
+      <button onclick="history.back()" class="btn btn-outline-success p-4 my-4 fw-bold rounded-pill sniglet-font shadow"><i class="fas fa-chevron-left"></i> Back?</button>
+      <h1 class="text-center" style="font-size: 60px">Checkout. Yeyyy!!!</h1>
+      <hr />
+      <div style="border-radius: 25px; min-height: 30vh; background-color: #1c9941; color: #fff" class="my-4 p-4">
+        <h3 class="fw-bold"><i class="fas fa-shopping-cart"></i> | Your Cart Items:</h3>
+        <div class="my-4 text-center rounded-pill shadow-lg py-2">
+          Cart Total: <span class="fs-1 fw-bold">R<span id="cart-total-display-cart">0.00</span> (<span id="cart-items-count-display-cart">0</span>)</span>
+        </div>
+
+        <ul class="list-group list-group-flush fs-1">
+          <li class="list-group-item bg-transparent text-white border-white">An item</li>
+          <li class="list-group-item bg-transparent text-white border-white">A second item</li>
+          <li class="list-group-item bg-transparent text-white border-white">A third item</li>
+          <li class="list-group-item bg-transparent text-white border-white">A fourth item</li>
+          <li class="list-group-item bg-transparent text-white border-white">And a fifth one</li>
+        </ul>
+        <p class="sniglet-font">*This is your Receipt, once again, Thank you for shopping with us. We appreciate your <span class="fw-bold">Petronage</span>.</p>
+        <div class="sidecart-checkout-btn-container d-grid gap-2 mb-4">
+          <button id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 mt-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning" onclick="alert('Hooray!!!!! \n\n\nYou will receive your order really soon. Please take some time to rate the service:')">Pay with your Card! <i class="fas fa-credit-card"></i></button>
+          <div class="my-4">
+            <div class="row align-items-center text-center" style="padding-bottom: 60px">
+              <div class="col"><img src="../../media/assets/yoco_colour.svg" alt="yoco logo" class="img-fluid" style="max-height: 10vh !important" /></div>
+
+              <div class="col"><img src="../../media/assets/mastercard_colour.svg" alt="mastercard logo" class="img-fluid" style="max-height: 10vh !important" /></div>
+
+              <div class="col"><img src="../../media/assets/visa_colour.svg" alt="mastercard logo" class="img-fluid" style="max-height: 10vh !important" /></div>
+            </div>
+
+            <hr class="text-white" />
+            <p class="text-center sniglet-font mt-4" style="font-size: 60px">Or!</p>
+            <hr class="text-white" />
+
+            <div class="d-grid gap-2" style="padding-top: 60px">
+              <button id="cod-checkout-btn" class="btn btn-success mt-4 btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning" onclick="alert('Hooray!!!!! \n\n\nYou will receive your order really soon. Please take some time to rate the service:')">Cash on Delivery! <i class="fas fa-truck"></i></button>
+            </div>
+
+            <p class="sniglet-font text-center mt-4">with just a tiny charge for delivery, just R30.00 &#128591;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ Main Body -->
+
+    <!-- footer -->
+    <div class="footer mb-0 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md text-center pb-4">
+            <img src="../../media/assets/Happy Events Rental Light Theme Full Logo.png" alt="logo" class="img-fluid shadow btn-success" style="border-radius: 25px" />
+
+            <p class="mt-4"><strong class="unica-one-font">Happy Events Equipment Rentals</strong> is an Equipment Rental company which sells and primarily leases equipment for all types of events. Whatever you need, we got it.</p>
+          </div>
+          <div class="col-md text-start pb-4">
+            <h2 class="text-start sniglet-font-thick">Navigation</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="#">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="about.php">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
+              <li class="list-group-item bg-transparent"><a href="contact.php">Contact</a></li>
+            </ul>
+
+            <h2 class="text-start sniglet-font-thick">Important Links</h2>
+            <ul class="list-group list-group-flush py-4" id="footer-navigation">
+              <li class="list-group-item bg-transparent"><a href="https://sacoronavirus.co.za/">COVID-19</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Privacy Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Return Policy</a></li>
+              <li class="list-group-item bg-transparent"><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+          <div class="col-md pb-4">
+            <h2 class="sniglet-font-thick">Sign up for our Newsletter</h2>
+            <p>By signing up, you will be added to our mailing list for our Monthly Newsletters. This will also enter you automatically in our promotional prize draws as well as make you elidgible to receiving Monthly Checkout Discounts (if you are a registered client).</p>
+            <form class="row g-3">
+              <div class="col-auto">
+                <label for="staticEmail2" class="visually-hidden">Email</label>
+                <input type="email" class="form-control -plaintext text-center rounded-pill shadow" id="staticEmail2" placeholder="email@example.com" />
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-outline-light rounded-pill mb-3">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <hr class="text-white" />
+
+        <div class="w-100 text-center">
+          <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
+        </div>
+      </div>
+    </div>
+    <!--./ end of footer-->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

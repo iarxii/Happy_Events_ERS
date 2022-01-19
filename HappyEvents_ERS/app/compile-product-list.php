@@ -68,20 +68,26 @@ if (isset($entryPointVal)) {
           }
 
           $comp_prod_list .= '<div class="product-card" id="prod-card-'.$product_id.'" '.$hidden.'>
-            <div class="card bg-transparent w-100 p-2">
+            <div class="card h-100 bg-transparent w-100 p-2">
               <img src="../media/general/product_imgs/'.$img_preview_url.'" class="card-img-top shadow" alt="image preview for '.$product_name.'" style="border-radius: 25px !important" />
               <div class="card-body">
+                <div class="d-grid gap-2 text-center mb-4" style="border-radius: 25px;">
+                  <button id="add-to-cart-btn-'.$product_id.'" type="button" onclick="addCartItem('."'".$product_id."','".$product_name."','".$product_sellprice."','".$product_rentprice."','".$product_itemcode."','".$product_binnumber."','".$img_preview_url."'".')" class="btn btn-warning btn-lg rounded-pill shadow fs-5 sniglet-font-thick text-success"> Add to Cart <i class="fas fa-cart-plus"></i></button>
+                </div>
+              
                 <h3 class="card-title fs-3">'.$product_name.'</h3>
                 <p class="fs-5">1 Day Hire Fee: R '.$product_rentprice.'</p>
                 <p class="fs-5">Buy for: R '.$product_sellprice.'</p>
-                <p class="card-text fs-4">'.$product_description.'</p>
+                <hr class="text-white">
 
-                <div class="text-end">
+                <p class="card-text fs-4">'.$product_description.'</p>
+                <hr class="text-white">
+                
+                <div class="text-start">
                   <a class="btn btn-outline-warning btn-sm rounded-pill my-2" data-bs-toggle="collapse" href="#collape-prod-details-list-'.$product_id.'" role="button" aria-expanded="false" aria-controls="collape-prod-details-list-'.$product_id.'">
                     More details here!
                   </a>
                 </div>
-                
 
                 <ul class="list-group list-group-flush my-2 bg-transparent collapse" id="collape-prod-details-list-'.$product_id.'">
                   <li class="list-group-item bg-transparent sniglet-font text-white">Type: '.$product_type.'</li>
@@ -92,10 +98,6 @@ if (isset($entryPointVal)) {
                   <li class="list-group-item bg-transparent sniglet-font text-white">IC: '.$product_itemcode.'</li>
                   <li class="list-group-item bg-transparent sniglet-font text-white">BN: '.$product_binnumber.'</li>
                 </ul>
-
-                <div class="d-grid gap-2 text-center card-footer" style="border-radius: 25px;">
-                  <button id="add-to-cart-btn-'.$product_id.'" type="button" onclick="addCartItem('."'".$product_id."','".$product_name."','".$product_sellprice."','".$product_rentprice."','".$product_itemcode."','".$product_binnumber."','".$img_preview_url."'".')" class="btn btn-warning btn-lg rounded-pill shadow fs-5 sniglet-font-thick text-success"> Add to Cart <i class="fas fa-cart-plus"></i></button>
-                </div>
               </div>
             </div>
           </div>';
@@ -103,8 +105,6 @@ if (isset($entryPointVal)) {
 
         $result->close();
         $dbconn->close();
-        
-        //navigate user to the Equipment Catalogue
       }
 
       echo $comp_prod_list;

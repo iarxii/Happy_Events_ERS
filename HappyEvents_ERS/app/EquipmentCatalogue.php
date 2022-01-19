@@ -1,3 +1,125 @@
+<?php
+  session_start();
+  include("../scripts/config.php");
+
+  //Connection Test==============================================>
+      // Check connection
+
+      /*if ($dbconn->connect_error) {
+          die("Connection failed: Error: [ " . $db->connect_error . " ]");
+      } else {
+          die("Connected successfully!");
+      }*/
+      
+  //end of Connection Test============================================>
+
+  function mysql_fix_string($dbconn, $string) {
+    if(get_magic_quotes_gpc()) $string = stripslashes($string);
+    return $dbconn->real_escape_string($string); 
+  }
+
+  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Check User Account Loggin Status
+  function generateRandomString($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
+
+  $randStr = generateRandomString(6);
+
+  $user_id = null;
+  $username = "Client_".$randStr;
+  $user_fname = "Client";
+  $user_lname = $randStr;
+  $user_contact = "contact_number_pending";
+  $user_email = "email_pending";
+  $user_type = "Prospective";
+  $user_reg_date = date("Y-m-d H:i:s");
+
+  $user_profile_pic = "default.png";
+
+  $userloggedin = "false";
+
+  //define("usersignedin", false, true);
+  //echo usersignedin;
+
+  if (isset($_SESSION['userauth'])) {
+    
+    if($_SESSION['userauth'] == true){
+      # load these details instead of querying them
+      $user_id = htmlspecialchars($_SESSION['userid']);
+      $username = htmlspecialchars($_SESSION['username']);
+      $user_fname = htmlspecialchars($_SESSION['fname']);
+      $user_lname = htmlspecialchars($_SESSION['lname']);
+      $user_contact = htmlspecialchars($_SESSION['contact']);
+      $user_email = htmlspecialchars($_SESSION['email']);
+      $user_type = htmlspecialchars($_SESSION['type']);
+      $user_reg_date = htmlspecialchars($_SESSION['regdate']);
+      $user_profile_pic = htmlspecialchars($_SESSION['profpic']);
+
+      $userloggedin = "true";
+    }
+    
+  }else{
+    if(isset($_GET['userauth'])){
+      //get the account details of the user id
+      if($_GET['userauth'] == true){
+        //Declaring variables
+        $userid = mysql_fix_string($dbconn,$_GET['id']);
+
+        $query = "SELECT * FROM Clients WHERE Client_id = $userid";
+        $result = $dbconn->query($query);
+        if(!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
+
+        $rows = $result->num_rows;
+
+        if($rows==0) {
+            //there is no result so notify user that the account cannot be found
+            //echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+            header("Location: index.php?return=unf&usrnm=Error");
+        } else {
+            for ($j = 0; $j < $rows ; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $user_id = htmlspecialchars($row['Client_id']);
+                $username = htmlspecialchars($row['username']);
+                $user_fname = htmlspecialchars($row['first_name']);
+                $user_lname = htmlspecialchars($row['last_name']);
+                $user_contact = htmlspecialchars($row['contact_number']);
+                $user_email = htmlspecialchars($row['email_address']);
+                $user_type = htmlspecialchars($row['user_type']);
+                $user_reg_date = htmlspecialchars($row['registration_date']);
+            }
+
+            $userloggedin = "true";
+            $user_profile_pic = "IARXII_SAN.jpg";
+
+            $_SESSION['userauth'] = mysql_fix_string($dbconn,$_GET['userauth']);
+            $_SESSION['userid'] = mysql_fix_string($dbconn, $user_id);
+            $_SESSION['username'] = mysql_fix_string($dbconn, $username);
+            $_SESSION['fname'] = mysql_fix_string($dbconn, $user_fname);
+            $_SESSION['lname'] = mysql_fix_string($dbconn, $user_lname);
+            $_SESSION['contact'] = mysql_fix_string($dbconn, $user_contact);
+            $_SESSION['email'] = mysql_fix_string($dbconn, $user_email);
+            $_SESSION['type'] = mysql_fix_string($dbconn, $user_type);
+            $_SESSION['regdate'] = mysql_fix_string($dbconn, $user_reg_date);
+            $_SESSION['profpic'] = mysql_fix_string($dbconn, $user_profile_pic);
+
+            $result->close();
+            $dbconn->close();
+        }
+
+      }
+      
+    }
+  }
+  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ./ Check User Account Loggin Status
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,26 +149,23 @@
       <div class="modal-dialog modal-dialog-centered" style="border-radius: 25px !important; overflow: hidden !important">
         <div class="modal-content shadow border border-success border-3" style="border-radius: 25px !important; overflow: hidden">
           <div class="modal-header gray-bg border-warning border-bottom border-3">
-            <img src="../media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 80px !important; border-radius: 25px; border: solid #1c9941 0px" />
+            <img src="media/assets/Happy Events New Logo with BG.png" alt="logo" class="img-fluid shadow bg-success" style="height: 80px !important; border-radius: 25px; border: solid #1c9941 0px" />
             <h5 class="modal-title fs-3 mx-4 fw-bold" id="clientSignInModalLabel">Client Sign In!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body fs-3 fw-bold sniglet-font text-center" style="color: #1c9941 !important">
-            <form action="../client-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form">
+            <form action="../client-login.php" method="post" autocomplete="on" id="client-login-form" class="text-center">
               <div class="mb-3">
                 <label for="signInInputUsername" class="form-label">Username</label>
-                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" />
+                <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" value="<?php echo $usrnm;?>" />
               </div>
               <div class="mb-3">
                 <label for="signInInputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4" id="signInInputPassword" name="signInInputPassword" />
+                <input type="password" class="form-control rounded-pill text-centerborder border-success border-4 text-center" id="signInInputPassword" name="signInInputPassword" />
               </div>
               <div class="d-grid">
                 <button type="submit" class="btn btn-success btn-block rounded-pill sniglet-font fs-1 fw-bold">Sign In!</button>
               </div>
-              <!--<div class="text-center">
-                <a href="#client-reg-label" data-bs-dismiss="modal">Don't have an account? Register one.</a>
-              </div>-->
             </form>
           </div>
           <div class="modal-footer text-center d-grid gap-2 bg-success" style="border-radius: 25px 25px 0 0">
@@ -74,7 +193,7 @@
         </div>
 
         <div class="sidecart-checkout-btn-container d-grid gap-2 mb-4">
-          <button id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning">Checkout Here! <i class="fas fa-cash-register"></i></button>
+          <a id="cart-checkout-btn" class="btn btn-success btn-lg rounded-pill p-4 fw-bold fs-1 shake shadow-lg border-warning border-5 text-warning" href="checkout/checkout.html">Checkout Here! <i class="fas fa-cash-register"></i></a>
         </div>
 
         <hr class="bg-success mt-4" />
@@ -115,7 +234,7 @@
           </h1>
         </div>
         <div class="sidecart-clear-cart-btn-container d-gridz gap-2z mb-4 text-center">
-          <button id="clear-cart-btn" class="btn btn-danger btn-lg rounded-pill p-4 fw-bold fs-5 shadow-lg border-light border-5 text-white">Clear Cart <i class="fas fa-trash-alt"></i></button>
+          <button id="clear-cart-btn" class="btn btn-danger btn-lg rounded-pill p-4 fw-bold fs-5 shadow-lg border-light border-5 text-white" onclick="clearCart()">Clear Cart <i class="fas fa-trash-alt"></i></button>
         </div>
       </div>
     </div>
@@ -139,22 +258,32 @@
         <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-center" href="../index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-center" href="../about.html">About</a>
+              <a class="nav-link text-center" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-center active" aria-current="page" href="#">Shop</a>
             </li>
-            <li class="nav-item" id="signin-nav-card">
-              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="../about.php">About</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link text-center" href="../contact.php">Contact</a>
+            </li>
+            <li class="nav-item" <?php if($userloggedin == "true"){echo "hidden";}?>>
               <a class="nav-link text-center" href="../client-registration.html">Registration</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-center" href="../contact.html">Contact</a>
+            <li class="nav-item" id="signin-nav-card">
+              
+              <?php
+                if($userloggedin === "true"){
+                  echo '<a class="nav-link text-center" href="#mini-profile-card"><i class="fas fa-id-badge"></i> @'.$username.'</a>';
+                }else{
+                  echo '<a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a>';
+                }
+              ?>
+            </li>
+            <li class="nav-item" <?php if($userloggedin == "false"){echo "hidden";}?>>
+              <a class="nav-link text-center border-danger px-3" onclick="userSignOut()"><span class="text-danger"><i class="fas fa-sign-out-alt"></i></span></a>
             </li>
           </ul>
         </div>
@@ -172,17 +301,25 @@
         <div class="col -sm text-start">
           <img src="../media/assets/Happy Events Reward Card.png" alt="" class="img-fluid shadow mb-4" style="border-radius: 25px !important" />
 
-          <div class="mini-profile-card row shadow-sm align-items-end" style="border-radius: 0 25px 25px 25px">
+          <div class="mini-profile-card row shadow-sm align-items-end" id="mini-profile-card" style="border-radius: 0 25px 25px 25px">
             <div class="col-sm p-2" style="overflow: hidden">
-              <img src="../media/user_profile_images/IARXII_SAN.jpg" alt="profile picture" class="img-fluid shadow" style="border-radius: 0 50rem 50rem 50rem !important; border: #1c9941 solid 4px" />
+              <img src="../media/user_profile_images/<?php echo $user_profile_pic;?>" alt="profile picture" class="img-fluid shadow" style="border-radius: 0 50rem 50rem 50rem !important; border: #1c9941 solid 4px" />
             </div>
 
-            <div class="col -8 text-center fs-5 fw-boldz border-warning mb-4">
-              <h5 class="text-center">Thabang Mposula</h5>
-
+            <div class="col text-center fs-5 fw-boldz border-warning mb-4">
+              <h5 class="text-center mt-4"><?php echo "$user_fname $user_lname";?></h5>
+              
               <div class="px-4 border-warning" style="border-bottom: #1c9941 solid 5px; border-radius: 0 0 25px 25px; font-size: 10px">
-                <span id="mini-profile-card-users-username-display m-4" class="barcode-font">Client_C97SV7</span>
+                <span id="mini-profile-card-users-username-display m-4" class="barcode-font"><?php echo $username ;?></span>
               </div>
+
+              <ul class="list-group list-group-flush border-0 sniglet-font mt-2" style="font-size: 5px">
+                <li class="list-group-item bg-transparent text-success"><?php echo $username;?></li>
+                <li class="list-group-item bg-transparent text-success"><?php echo $user_email;?></li>
+                <li class="list-group-item bg-transparent text-success"><?php echo $user_contact;?></li>
+                <li class="list-group-item bg-transparent text-success"><?php echo $user_type;?></li>
+                <li class="list-group-item bg-transparent text-success"><?php echo $user_reg_date;?></li>
+              </ul>
             </div>
 
             <div class="col-2 p-2 text-center border-warning" style="border-left: #1c9941 solid 5px; border-bottom: #1c9941 solid 5px; border-top-left-radius: 25px; border-bottom-right-radius: 25px">
@@ -195,10 +332,10 @@
 
           <!--User selects the buy / hire option.-->
           <div class="btn-group fs-1 mb-4 sniglet-font" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="setTradeOption('rental')" />
             <label class="btn btn-outline-light fw-bold" for="btnradio1">Rental</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="setTradeOption('buying')" />
             <label class="btn btn-outline-light fw-bold" for="btnradio2">Buying</label>
           </div>
 
@@ -272,10 +409,10 @@
             <h2 class="text-start sniglet-font-thick">Navigation</h2>
             <ul class="list-group list-group-flush py-4" id="footer-navigation">
               <li class="list-group-item bg-transparent"><a href="#">Home</a></li>
-              <li class="list-group-item bg-transparent"><a href="about.html">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="about.php">About</a></li>
               <li class="list-group-item bg-transparent"><a href="#">Shop</a></li>
               <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
-              <li class="list-group-item bg-transparent"><a href="contact.html">Contact</a></li>
+              <li class="list-group-item bg-transparent"><a href="contact.php">Contact</a></li>
             </ul>
 
             <h2 class="text-start sniglet-font-thick">Important Links</h2>
@@ -361,6 +498,13 @@
 
         //Update the #rental-duration-day-count eleme with the calculated no. of days (result)
         document.getElementById("rental-duration-day-count").innerHTML = Difference_In_Days;
+
+        return Difference_In_Days;
+      }
+
+      //******* User sign out
+      function userSignOut() {
+        window.location.href = "sign-out.php";
       }
 
       //******* Store: Cart - Transfer User to Checkout landing page
@@ -368,11 +512,57 @@
 
       //******* Store: Cart - Clear Cart
       //We want to clear / remove all child .sidecart-item-cart Div Elements and insert an H3 Element that displays: "No items yet. Pick out something you like!".
+      function clearCart(params) {
+        //initializing localstorage variables
+        localStorage.setItem("trade_option", "rental");
+        localStorage.setItem("rental_cart_total", 0.00)
+        localStorage.setItem("buying_cart_total", 0.00);
+        localStorage.setItem("cart_items_count", 0);
+        localStorage.setItem("trade_option", "rental");
+
+        var selCartItemsContainer = document.getElementById("sidecart-item-cart-container");
+        var cartTotalDisplay = document.getElementById("cart-total-display");
+        var cartItemCountDisplay = document.getElementById("cart-items-count-display");
+        var cartTotalDisplayCart = document.getElementById("cart-total-display-cart");
+        var cartItemCountDisplayCart = document.getElementById("cart-items-count-display-cart");
+
+        selCartItemsContainer.innerHTML = `<h1 class="fw-bold text-center my-4 text-success" id="no-items-label">
+            <span class="text-warning fs-1 fw-bold"><i class="fas fa-spinner" aria-hidden="true"></i></span> Pick out something you like!
+          </h1>`;
+
+        cartTotalDisplay.innerHTML = "0.00";
+        cartItemCountDisplay.innerHTML = 0;
+        cartTotalDisplayCart.innerHTML = "0.00";
+        cartItemCountDisplayCart.innerHTML = 0;
+      }
 
       //******* Store: Cart - Add an item to the Cart
       //We want to create a .sidecart-item-cart Div Element of the selected item from the product list into the Cart .sidecart-item-cart-container Div Container Element.
       //addCartItem('$product_id','$product_name','$product_sellprice','$product_rentprice','$product_itemcode','$product_binnumber'."','".$img_preview_url)
+      
+      //initializing localstorage variables
+      if (localStorage.getItem("trade_option") === null) {
+          //initialize storage value
+          localStorage.setItem("trade_option", "rental");
+        }
+
+      if (localStorage.getItem("rental_cart_total") === null) {
+        //initialize storage value
+        localStorage.setItem("rental_cart_total", 0.00);
+      }
+
+      if (localStorage.getItem("buying_cart_total") === null) {
+        //initialize storage value
+        localStorage.setItem("buying_cart_total", 0.00);
+      }
+
+      if (localStorage.getItem("cart_items_count") === null) {
+        //initialize storage value
+        localStorage.setItem("cart_items_count", 0);
+      }
+
       function addCartItem(prodid, prodname, prodsellprice, prodrentprice, proditemcode, prodbinnumber, imgpreview) {
+        //alert("Notice! \n\nFlag check: \n\nProduct Name: [ " + prodname + " ] \n\nProduct Sell Price: [R" + prodsellprice + " ] \n\nProduct Rent Price: [R" + prodrentprice + " ]");
         var selCartItemsContainer = document.getElementById("sidecart-item-cart-container");
 
         var cartTotalDisplay = document.getElementById("cart-total-display");
@@ -391,6 +581,14 @@
         miniItemCardDiv.classList.add("mb-4");
 
         miniItemCardDiv.id = "cart-item-prod-card-" + prodid;
+
+        if(localStorage.getItem("trade_option") == "rental"){
+          $cartItemDispAmt = prodrentprice;
+          $tradeoptStr = "(Rental)";
+        }else{
+          $cartItemDispAmt = prodsellprice;
+          $tradeoptStr = "(Buying)";
+        }
 
         miniItemCardDiv.innerHTML =
           `<div class="card bg-transparent border-0" style="max-width: 540px">
@@ -415,8 +613,8 @@
                             <div class="col-sm">
                                 <p class="mb-0">Item Amount:</p>
                                 <p class="fs-1 fw-bold" id="cart-total-display">R` +
-          prodsellprice +
-          `</p>
+          $cartItemDispAmt +
+          ` <span style="font-size: 15px!important">` + $tradeoptStr + `</span></p>
                             </div>
                             <div class="col-sm d-grid gap-2">
                                 <button class="btn btn-danger btn-lg p-4 rounded-pill fs-1" onclick="removeCartItem('cart-item-prod-card-` +
@@ -431,17 +629,57 @@
 
         selCartItemsContainer.appendChild(miniItemCardDiv);
 
+        var val;
         //calculate the cartItemCount and cartTotalAmt's
-        cartItemCount = parseInt(cartItemCountDisplay.innerText) + 1;
-        cartTotalAmt = parseInt(cartTotalDisplay.innerHTML) + parseInt(prodsellprice);
+        if (localStorage.getItem("trade_option") == "rental") {
+          //rental - calculate the total according to the rental price and update displays
+          //localStorage.setItem("rental_cart_total", parseFloat(localStorage.getItem("rental_cart_total")).toFixed(2));
+          cartTotalAmt = parseFloat(localStorage.getItem("rental_cart_total")) + parseFloat(prodrentprice);
+          alert("Rental (Curr LS Value): "+ parseFloat(localStorage.getItem("rental_cart_total")).toFixed(2));
+          alert("Rental (RP: "+ parseFloat(cartTotalAmt).toFixed(2));
+          localStorage.setItem("rental_cart_total", parseFloat(cartTotalAmt).toFixed(2));
+        } else {
+          //buying - calculate the total according to the buying price and update displays
+          //localStorage.setItem("buying_cart_total", parseFloat(localStorage.getItem("buying_cart_total")).toFixed(2));
+          cartTotalAmt = localStorage.getItem("buying_cart_total") + parseFloat(prodsellprice);
+          alert("Rental (Curr LS Value): "+ parseFloat(localStorage.getItem("buying_cart_total")).toFixed(2));
+          alert("Rental (RP: "+ parseFloat(cartTotalAmt).toFixed(2));
+          localStorage.setItem("buying_cart_total", parseFloat(cartTotalAmt).toFixed(2));
+        }
 
-        cartItemCountDisplay.innerText = cartItemCount;
-        cartTotalDisplay.innerText = cartTotalAmt;
+        
 
-        cartItemCountDisplayCart.innerText = cartItemCount;
-        cartTotalDisplayCart.innerText = cartTotalAmt;
+        //update the cart items localstorage value
+        localStorage.setItem("cart_items_count", parseInt(localStorage.getItem("cart_items_count")) + 1);
+        cartItemCount = localStorage.getItem("cart_items_count");
 
-        alert("Notice! \n\nItem added to Cart: \n\nProduct Name: [ " + prodname + " ] \n\nProduct Price: [R" + prodsellprice + " ] \n\nItems in Cart [ " + cartItemCount + " ] \n\nCart Total: [ " + cartTotalAmt + " ]");
+        //display the calculated values
+        //cart display
+        cartItemCountDisplayCart.innerHTML = cartItemCount;
+        cartTotalDisplayCart.innerHTML = cartTotalAmt;
+
+        //Store front display
+        cartItemCountDisplay.innerHTML = cartItemCountDisplayCart.innerHTML;
+        cartTotalDisplay.innerHTML = cartTotalDisplayCart.innerHTML;
+        
+
+        alert("Notice! \n\nItem added to Cart: \n\nProduct Name: [ " + prodname + " ] \n\nProduct Rent Price: [R" + prodrentprice + " ] \n\nProduct Sell Price: [R" + prodsellprice + " ] \n\nItems in Cart [ " + cartItemCount + " ] \n\nCart Total: [ " + cartTotalAmt + " ]");
+      }
+
+      function setTradeOption(optionval) {
+        localStorage.setItem("trade_option", optionval);
+      }
+
+      function setRentDuration(type, datestr) {
+        if(type == "start"){
+          localStorage.setItem("rental_start", datestr);
+        }else{
+          localStorage.setItem("rental_end", datestr);
+        }
+
+        //calculate the number of days
+        var duration = calcRentalDuration();
+        localStorage.setItem("rental_duration", duration);
       }
 
       //******* Store: Cart - Remove a Single Cart item
@@ -451,6 +689,7 @@
         document.getElementById("no-items-label").style.display = "block";
 
         var elem = document.getElementById(elemid);
+
         return elem.parentNode.removeChild(elem);
       }
 

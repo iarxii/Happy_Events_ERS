@@ -1,3 +1,37 @@
+<?php
+  session_start();
+  include("../scripts/config.php");
+
+  function mysql_fix_string($dbconn, $string) {
+    if(get_magic_quotes_gpc()) $string = stripslashes($string);
+    return $dbconn->real_escape_string($string); 
+  }
+
+  if(isset($_SESSION['admin_auth'])){
+    if($_SESSION['admin_auth'] == true){
+      header("Location: admin-app/admin.php?adminauth=".$_SESSION['admin_auth']."&id=".$_SESSION['admin_id']);
+    }
+  }
+
+  $usrnm = "";
+  if (isset($_GET['return'])) {
+    $return = mysql_fix_string($dbconn, $_GET['return']);
+    
+    if ($return == "unf") {
+      $usrnm = mysql_fix_string($dbconn, $_GET['usrnm']);
+      # User Not Found
+      echo '<div class="alert alert-danger fw-bold text-center"><i class="fas fa-exclamation-triangle"></i> | The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.</div>';
+    } elseif ($return == "noauth") {
+      # Session is not autorized
+      echo '<div class="alert alert-danger fw-bold text-center"><i class="fas fa-exclamation-triangle"></i> | Your session has expired. Please sign in again.</div>';
+    }
+     elseif ($return == "loginreq") {
+      # Login required to start a validated session
+      echo '<div class="alert alert-danger fw-bold text-center"><i class="fas fa-exclamation-triangle"></i> | Access denied. Please sign in as a System Administrator to continue.</div>';
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,25 +68,25 @@
         <button class="navbar-toggler shadow rounded-pill p-4 mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #1c9941 !important">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end fw-bold" style="font-size: 10px" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-center" href="../index.html">Home</a>
+              <a class="nav-link text-center" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../about.html">About</a>
+              <a class="nav-link text-center" href="../app/EquipmentCatalogue.php">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../app/EquipmentCatalogue.html">Shop</a>
+              <a class="nav-link text-center" href="../about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" style="cursor: pointer; font-size: 10px">Admin Sign In</a>
+              <a class="nav-link text-center" href="../contact.php">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-center" href="../client-registration.html">Registration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../contact.html">Contact</a>
+              <a class="nav-link active text-center" aria-current="page" style="cursor: pointer; font-size: 10px">Admin Sign In</a>
             </li>
           </ul>
         </div>
@@ -66,7 +100,7 @@
       <hr class="text-success" />
       <hr class="text-success" />
       <hr class="text-success" />
-      <form action="admin-login.php" method="post" autocomplete="on" target="_blank" id="client-login-form" class="text-center mb-4 w-50z sniglet-font fw-bold">
+      <form action="admin-login.php" method="post" autocomplete="on" target_blank id="client-login-form" class="text-center mb-4 w-50z sniglet-font fw-bold">
         <div class="mb-md-3">
           <label for="signInInputUsername" class="form-label">Username</label>
           <input type="text" class="form-control rounded-pill text-center border border-success border-4" id="signInInputUsername" name="signInInputUsername" />
@@ -96,11 +130,11 @@
           <div class="col-md text-start pb-4">
             <h2 class="text-start sniglet-font-thick">Navigation</h2>
             <ul class="list-group list-group-flush py-4" id="footer-navigation">
-              <li class="list-group-item bg-transparent"><a href="../index.html">Home</a></li>
-              <li class="list-group-item bg-transparent"><a href="../about.html">About</a></li>
-              <li class="list-group-item bg-transparent"><a href="../app/EquipmentCatalogue.html">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a href="../index.php">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="../about.php">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="../app/EquipmentCatalogue.php">Shop</a></li>
               <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
-              <li class="list-group-item bg-transparent"><a href="../contact.html">Contact</a></li>
+              <li class="list-group-item bg-transparent"><a href="../contact.php">Contact</a></li>
             </ul>
 
             <h2 class="text-start sniglet-font-thick">Important Links</h2>

@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if(isset($_SESSION['admin_auth'])){
+  if($_SESSION['admin_auth'] == false){
+    header("Location: ../admin-index.php?return=noauth");
+  }
+}else{
+  header("Location: ../admin-index.php?return=loginreq");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,10 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <!-- Button trigger modal -->
+    <!-- Edit Record Modal Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Edit-Record-Modal" id="toggle-edit-record-modal" hidden></button>
 
-    <!-- Modal -->
+    <!-- Edit Record Modal -->
     <div class="modal fade" id="Edit-Record-Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-record-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollablez modal-lg">
         <div class="modal-content">
@@ -40,6 +53,7 @@
         </div>
       </div>
     </div>
+    <!-- ./ Edit Record Modal -->
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-whitez fs-5z sticky-topz" style="background: #e6f5e5 !important; color: #1c9941 !important; border-radius: 0 0 25px 25px !important">
@@ -62,19 +76,23 @@
               <a class="nav-link active text-center" aria-current="page" href="#" style="font-size: 10px">Admin Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active text-center" href="../../index.php" style="font-size: 10px">Home (Index)</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-center" href="#user-mgm-lbl" style="font-size: 10px">User Registration</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer; font-size: 10px">Sign Out</a>
+              <a class="nav-link text-center" href="../../app/EquipmentCatalogue.php">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../../app/EquipmentCatalogue.html">Shop</a>
+              <a class="nav-link text-center" href="../../about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../../about.html">About</a>
+              <a class="nav-link text-center" href="../../contact.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="../../contact.html">Contact</a>
+              <a class="nav-link text-center border-danger px-3" onclick="adminSignOut()" style="cursor: pointer; font-size: 10px"><i class="fas fa-sign-out-alt text-danger"></i></a>
             </li>
           </ul>
         </div>
@@ -105,7 +123,7 @@
             <div id="admin-new-product-entry-form-container" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4">
               <h1 class="mt-4 text-center">New Product Entry Form</h1>
 
-              <form action="new-product.php" method="post" target="_blank" id="admin-new-product-entry-form" class="basic-form-style p-4 shadow fs-3">
+              <form action="new-product.php" method="post" target_blank id="admin-new-product-entry-form" class="basic-form-style p-4 shadow fs-3">
                 <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the capturing of <strong>New Product Entry Data</strong>.</div>
 
                 <div class="mb-3">
@@ -218,7 +236,7 @@
           <div id="admin-new-user-reg-form" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4 bg-success">
             <h1 class="mt-4 text-center">New Client Registration Form</h1>
 
-            <form action="../../client-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow fs-3">
+            <form action="../../client-registration.php" method="post" target_blank id="client-registration-form" class="basic-form-style p-4 shadow fs-3">
               <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the Registration of <strong>Clients/Customers</strong> to create new user accounts to grant them access to the system.</div>
               <div class="mb-3">
                 <label for="clientRegInputTitlee" class="form-label">Title</label>
@@ -286,7 +304,7 @@
           <div id="admin-new-user-reg-form" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4 bg-danger">
             <h1 class="mt-4 text-center">New Administrator Registration Form</h1>
 
-            <form action="admin-registration.php" method="post" target="_blank" id="client-registration-form" class="basic-form-style p-4 shadow fs-3" id="homepage-client-registration-form">
+            <form action="admin-registration.php" method="post" target_blank id="client-registration-form" class="basic-form-style p-4 shadow fs-3" id="homepage-client-registration-form">
               <div id="emailHelp" class="form-text text-center p-4 mb-4 shadow sniglet-font -thick text-danger bg-light" style="border-radius: 25px">Please take note that this form is only for the Registration of <strong>System Administrators</strong> to create new user accounts to grant them access to the system.</div>
               <div class="mb-3">
                 <label for="newAdminInputTitlee" class="form-label">Title</label>
@@ -460,11 +478,11 @@
           <div class="col-md text-start pb-4">
             <h2 class="text-start sniglet-font-thick">Navigation</h2>
             <ul class="list-group list-group-flush py-4" id="footer-navigation">
-              <li class="list-group-item bg-transparent"><a href="../../index.html">Home</a></li>
-              <li class="list-group-item bg-transparent"><a href="../../about.html">About</a></li>
-              <li class="list-group-item bg-transparent"><a href="../../app/EquipmentCatalogue.html">Shop</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../index.php">Home</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../about.php">About</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../app/EquipmentCatalogue.php">Shop</a></li>
               <li class="list-group-item bg-transparent"><a data-bs-toggle="modal" data-bs-target="#clientSignInModal" style="cursor: pointer">Sign In</a></li>
-              <li class="list-group-item bg-transparent"><a href="../../contact.html">Contact</a></li>
+              <li class="list-group-item bg-transparent"><a href="../../contact.php">Contact</a></li>
             </ul>
 
             <h2 class="text-start sniglet-font-thick">Important Links</h2>
@@ -545,6 +563,11 @@
         //alert("Tables Refreshed");
       }
 
+      //******* User sign out
+      function adminSignOut() {
+        window.location.href = "admin-sign-out.php";
+      }
+
       //******* Admin: Delete Record from Product List
       //We want to remove the record of the id from the database and UI table
       function deleteProductRecord(prodid) {
@@ -618,8 +641,8 @@
         xhttp.send();
       }
 
-      //******* Admin: Launch the Record Update Modal - Product List
-      //We want to Launch the Record Update Modal when the edit buttons are clicked from Product List
+      //******* Admin: Launch the Record Update Modal - Product List Client List Admin List
+      //We want to Launch the Record Update Modal when the edit buttons are clicked from Product, Client, Admin List
       function showModal(recordid, origin) {
         //initialize variable
         var modalToggleBtn = document.getElementById("toggle-edit-record-modal");
@@ -643,21 +666,6 @@
           modalIFrameViewer.src = "edit-admin.php?id=" + recordid;
         }
       }
-
-      //******* Admin: Launch the Record Update Modal - Client List
-      //We want to Launch the Record Update Modal when the edit buttons are clicked from Client List
-
-      //******* Admin: Launch the Record Update Modal - Admin List
-      //We want to Launch the Record Update Modal when the edit buttons are clicked from Admin List
-
-      //******* Admin: Update Record from Product List
-      //We want to update the record of the id from the database and UI table
-
-      //******* Admin: Update Record from Customer List
-      //We want to update the record of the id from the database and UI table
-
-      //******* Admin: Update Record from Admin List
-      //We want to update the record of the id from the database and UI table
 
       //On load: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       document.addEventListener("load", initializeTables());

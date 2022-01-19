@@ -4,10 +4,11 @@
 
     //Connection Test==============================================>
         // Check connection
+
         /*if ($dbconn->connect_error) {
-            die("<div class='p-4 alert alert-danger'>Connection failed: " . $db->connect_error) . "</div>";
+            die("Connection failed: Error: [ " . $db->connect_error . " ]");
         } else {
-            die("Connected successfully");
+            die("Connected successfully!");
         }*/
         
     //end of Connection Test============================================>
@@ -29,7 +30,8 @@
 
     if($rows==0) {
         //there is no result so notify user that the account cannot be found
-        echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+        //echo "The Username and Password you have provided may be incorrect or may not exist. Please check your inputs and try again.";
+        header("Location: index.php?return=unf&usrn=$username");
     } else {
         for ($j = 0; $j < $rows ; ++$j) {
             $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -55,7 +57,6 @@
         $dbconn->close();
 
         //navigate user to the Equipment Catalogue
+        header("Location: app/EquipmentCatalogue.php?userauth=true&id=$user_id");
     }
-
-    
 ?>

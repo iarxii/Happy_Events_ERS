@@ -53,8 +53,6 @@
     if(!$result) die("<div class='alert alert-danger text-center'>A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.</div><br><br><a href='index.html'>Return to Home Page</a>");
 
     echo '<div class="alert alert-success p-4 text-center w-100">Operation Completed Successfully.</div>';
-
-    
 ?>
 <!DOCTYPE html>
 <html>

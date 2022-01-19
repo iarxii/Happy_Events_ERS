@@ -6,10 +6,6 @@
   --secondary-darker: #105525;
 }
 
-.gray-bg {
-  background-color: var(--primarycolor) !important;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Sniglet:wght@400;800&family=Unica+One&display=swap");
 
 body {

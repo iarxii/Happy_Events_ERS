@@ -118,7 +118,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="margin-bottom: 100px">
       <!-- Update client Form -->
       <div id="admin-update-client-info-form-container" style="background-color: #1c9941; color: #fff; border-radius: 25px" class="shadow p-4 my-4">
         <h1 class="mt-4 text-center">Update System Administrator Account Details</h1>
@@ -174,7 +174,7 @@
       <!-- ./ Update client  Form -->
     </div>
 
-    <div class="w-100 text-center fw-bold" style="background-color: #1c9941; color: #fff">
+    <div class="w-100 text-center fw-bold fixed-bottom" style="background-color: #1c9941; color: #fff; font-size: 10px">
       <p class="py-4">Crafted by Thabang Mposula (8008999) &copy; 2021 | Systems Development 3 (HSYD300-1) SA1</p>
     </div>
 
